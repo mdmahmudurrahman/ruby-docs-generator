@@ -1,0 +1,17 @@
+<div class="col-md-4 col-md-offset-4">
+  <h3 class="page-header text-center">
+    <%= t '.title_page' %>
+  </h3>
+
+  <%= simple_form_for @document do |form| %>
+      <%= form.input :discipline_code %>
+      <%= form.input :discipline_name %>
+      <%= form.input :field_of_study_code %>
+      <%= form.input :field_of_study_name %>
+      <%= form.input :speciality_name %>
+      <%= form.input :specialization_name %>
+      <%= form.input :faculty_name %>
+
+      <%= form.button :submit, t('.generate_doc'), class: 'btn-primary pull-right' %>
+  <% end %>
+</div>

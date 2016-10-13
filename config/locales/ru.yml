@@ -1,0 +1,35 @@
+ru:
+  documents:
+    new:
+      title_page: 'Титульная страница'
+      generate_doc: 'Сгенерировать документ'
+
+  simple_form:
+    no: 'Нет'
+    yes: 'Да'
+
+    labels:
+      document:
+        discipline_code: "Шифр дисциплины"
+        discipline_name: "Название дисциплины"
+
+        field_of_study_code: "Шифр направления подготовки"
+        field_of_study_name: "Название направления подготовки"
+
+        speciality_name: "Название специальности"
+        specialization_name: "Название специализации"
+
+        faculty_name: "Название факультет/центра"
+
+    placeholders:
+      document:
+        discipline_code: "3.7."
+        discipline_name: "Комп'ютерні мережі"
+
+        field_of_study_code: "6.040301"
+        field_of_study_name: "Прикладна математика"
+
+        speciality_name: "Прикладна математика"
+        specialization_name: ""
+
+        faculty_name: "прикладної математики"

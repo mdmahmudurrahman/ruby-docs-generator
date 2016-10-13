@@ -1,15 +1,35 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
+//= require jquery3
 //= require jquery_ujs
+//= require bootstrap-sprockets
+
+//= require docxtemplater
+//= require jszip-utils
+//= require file-saver
+
 //= require_tree .
+//= require_self
+
+$(function () {
+  if ($('[action="documents#generate"]').length > 0) {
+    const loadFile = function (url, callback) {
+      JSZipUtils.getBinaryContent(url, callback);
+    };
+
+    loadFile("/assets/template.docx", function (error, content) {
+      if (error) throw e;
+
+      const doc = new Docxgen(content);
+
+      doc.setData({
+        total_hours_count: 144
+      });
+
+      doc.render();
+
+      const out = doc.getZip().generate({type: "blob"});
+
+      saveAs(out, "output.docx");
+    });
+  }
+});
