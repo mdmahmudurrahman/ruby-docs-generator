@@ -1,0 +1,6 @@
+Rails:
+  Enabled: true
+Metrics/LineLength:
+  Max: 300
+Documentation:
+  Enabled: false
