@@ -1,6 +1,92 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+* {
+  outline: 0 !important;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.delimiter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.lead {
+  margin-bottom: 0;
+}
+
+.cancel-link {
+  padding-top: 8px;
+  padding-left: 10px;
+}
+
+.page-header {
+  margin-top: 10px;
+}
+
+.panel-heading h4 {
+  margin: 0;
+}
+
+.panel .panel {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .panel-body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.glyphicon-option-vertical {
+  height: 20px;
+  padding-top: 2px;
+
+  &:hover + .menu-wrapper {
+    display: block;
+  }
+}
+
+.menu-wrapper {
+  display: none;
+  position: relative;
+
+  .menu {
+    right: -25px;
+    z-index: 999;
+    padding: 6px 0;
+    position: absolute;
+    border-radius: 3px;
+    background-color: white;
+    border: 1px solid #c3c3c3;
+    box-shadow: 0 1px 1px #d2d2d2;
+
+    a {
+      text-decoration: none;
+    }
+
+    .menu-item {
+      cursor: pointer;
+      padding: 8px 20px;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+
+  &:hover {
+    display: block;
+  }
 }

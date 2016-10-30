@@ -1,0 +1,14 @@
+<div class="col-md-4 col-md-offset-4">
+  <% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+  <% end %>
+
+  <%= simple_form_for [main_module, sub_module] do |form| %>
+    <%= form.input :name %>
+    <%= form.input :lecture_count %>
+    <%= form.input :labs_count %>
+    <%= form.button :submit %>
+  <% end %>
+
+  <%= link_to 'Назад', root_path %>
+</div>

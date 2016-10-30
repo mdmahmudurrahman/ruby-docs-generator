@@ -23,8 +23,8 @@ module RubyDocsGenerator
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.assets.paths << "#{Rails.root}/app/assets/templates"
-
     config.i18n.default_locale = :ru
+    config.action_controller.include_all_helpers = false
+    config.assets.paths << "#{Rails.root}/app/assets/templates"
   end
 end

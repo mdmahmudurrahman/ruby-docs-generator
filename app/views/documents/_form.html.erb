@@ -1,0 +1,53 @@
+<%= render 'application/alert' %>
+
+<%= simple_form_for document, form_options do |form| %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <%= t '.title_page' %>
+        </div>
+
+        <div class="panel-body">
+          <%= form.input :discipline_code %>
+          <%= form.input :discipline_name %>
+          <%= form.input :field_of_study_code %>
+          <%= form.input :field_of_study_name %>
+          <%= form.input :speciality_name %>
+          <%= form.input :specialization_name %>
+          <%= form.input :faculty_name %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <%= t '.study_description' %>
+        </div>
+
+        <div class="panel-body">
+          <%= form.input :credits_count, number_input_options %>
+          <%= form.input :year_of_studying, number_input_options %>
+          <%= form.input :semester_number, number_input_options %>
+          <%= form.input :lectures_count, number_input_options %>
+          <%= form.input :labs_count, number_input_options %>
+          <%= form.input :self_hours_count, number_input_options %>
+          <%= form.input :total_hours_count, number_input_options %>
+
+          <%= form.input :type_of_control, collection: %w(залік екзамен), prompt: :translate %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="delimiter"></div>
+
+      <div class="pull-left">
+        <%= form.button :submit %>
+      </div>
+
+      <div class="pull-left cancel-link">
+        <%= link_to t('cancel'), root_path, class: 'text-danger' %>
+      </div>
+    </div>
+<% end %>

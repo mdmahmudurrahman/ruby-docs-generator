@@ -1,0 +1,15 @@
+<div class="col-md-4 col-md-offset-4">
+  <h3 class="page-header text-center">
+    <%= t '.title' %>
+  </h3>
+
+  <%= simple_form_for [document, main_module] do |form| %>
+      <%= form.input :name %>
+      <%= form.input :total_time, input_html: { min: 0 } %>
+      <%= form.button :submit, class: 'btn btn-primary' %>
+
+      <div class="back-link pull-right">
+        <%= link_to t('back'), root_path %>
+      </div>
+  <% end %>
+</div>

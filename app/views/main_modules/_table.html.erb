@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4><%= t '.modules' %></h4>
+  </div>
+
+  <% if not document.main_modules.empty? %>
+      <% main_modules.each do |main_module| %>
+          <div class="panel panel-default" style="margin: 20px">
+            <div class="panel-heading col-md-12">
+              <%= main_module.name %> Модуль
+              <%= link_to 'Удалить', document_main_module_path(document, main_module), method: :delete, class: 'btn btn-danger pull-right' %>
+              <%= link_to 'Редактировать', edit_document_main_module_path(document, main_module), class: 'btn btn-primary pull-right' %>
+            </div>
+
+            <div class="panel-body">
+              <% main_module.sub_modules.each do |sub_module| %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading col-md-12">
+                      <%= sub_module.name %> Под модуль
+                      <%= link_to 'Удалить', sub_module_path(sub_module), method: :delete, class: 'btn btn-danger pull-right' %>
+                      <%= link_to 'Редактировать', edit_main_module_sub_module_path(main_module, sub_module), class: 'btn btn-primary pull-right' %>
+                    </div>
+                    <div class="panel-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th><%= 'Тема' %></th>
+                            <th><%= 'Л' %></th>
+                            <th><%= 'Лаб' %></th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <% sub_module.topics.each do |topic| %>
+                              <tr>
+                                <td><%= topic.name %></td>
+                                <td><%= topic.lecture_count %></td>
+                                <td><%= topic.labs_count %></td>
+                                <td><%= link_to 'Редактировать', edit_sub_module_topic_path(sub_module, topic) %></td>
+                                <td><%= link_to 'Удалить', topic_path(topic), method: :delete %></td>
+                              </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="panel-footer">
+                      <%= link_to 'Добавить тему', new_sub_module_topic_path(sub_module) %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="panel-footer">
+              <%= link_to 'Добавить подмодуль', new_sub_module_path(main_module) %>
+            </div>
+          </div>
+      <% end %>
+  <% else %>
+      <div class="panel-body">
+        <div class="lead text-center">
+          <small><%= t '.no_modules' %></small>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="panel-footer">
+    <%= link_to t('.add'), new_document_main_module_path(document) %>
+  </div>
+</div>

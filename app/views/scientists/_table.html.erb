@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4><%= t '.teachers' %></h4>
+  </div>
+
+  <% if not document.scientists.empty? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t '.name' %></th>
+            <th class="text-center"><%= t '.position' %></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody class="text-center">
+          <% scientists.each do |scientist| %>
+              <tr>
+                <td><%= scientist.name %></td>
+                <td><%= scientist.position %></td>
+
+                <td class="col-md-2">
+                  <%= link_to t('delete'), [document, scientist], method: :delete %>
+                </td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+  <% else %>
+      <div class="panel-body">
+        <div class="lead text-center">
+          <small><%= t '.no_teachers' %></small>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="panel-footer">
+    <%= link_to t('.add'), new_document_scientist_path(document) %>
+  </div>
+</div>

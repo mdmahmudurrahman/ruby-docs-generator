@@ -19,17 +19,20 @@ $(function () {
     loadFile("/assets/template.docx", function (error, content) {
       if (error) throw e;
 
+      const data = {};
       const doc = new Docxgen(content);
 
-      doc.setData({
-        total_hours_count: 144
+      $.get('/documents/1/document-data', function (response) {
+        $.extend(data, response);
+
+        doc.setData(data);
+
+        doc.render();
+
+        const out = doc.getZip().generate({type: "blob"});
+
+        saveAs(out, "output.docx");
       });
-
-      doc.render();
-
-      const out = doc.getZip().generate({type: "blob"});
-
-      saveAs(out, "output.docx");
     });
   }
 });

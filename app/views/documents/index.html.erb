@@ -1,0 +1,23 @@
+<div class="col-md-6 col-md-offset-3">
+  <%= render 'application/alert' %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading text-left">
+      <h4><%= t '.documents' %></h4>
+    </div>
+
+    <div class="panel-body">
+      <% if @documents.empty? %>
+          <div class="text-center">
+            <%= t '.no-documents' %>
+          </div>
+      <% else %>
+          <%= render @documents %>
+      <% end %>
+    </div>
+
+    <div class="panel-footer">
+      <%= link_to t('.add'), new_document_path %>
+    </div>
+  </div>
+</div>

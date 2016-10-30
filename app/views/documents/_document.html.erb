@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= link_to document.discipline_name, edit_document_path(document) %>
+
+    <div class="pull-right">
+      <%= render 'application/menu', context_menu_options(document) %>
+    </div>
+  </div>
+</div>

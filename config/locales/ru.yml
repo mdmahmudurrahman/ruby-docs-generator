@@ -1,8 +1,74 @@
 ru:
+  back: 'Назад'
+  delete: 'Удалить'
+  update: 'Изменить'
+  cancel: 'Отменить'
+
   documents:
-    new:
+    form:
       title_page: 'Титульная страница'
       generate_doc: 'Сгенерировать документ'
+      study_description: 'Описание учебной дисциплины'
+
+    index:
+      documents: 'Документы'
+      add: 'Добавить документ'
+      no-documents: 'Нет документов.'
+
+    new:
+      title: 'Добавить документ'
+
+    create:
+      alert: 'Документ успешно добавлен!'
+
+    edit:
+      title: 'Редактировать документ'
+
+    update:
+      alert: 'Документ успешно обновлен!'
+
+    destroy:
+      alert: 'Документ успешно удален!'
+
+  scientists:
+    new:
+      title: 'Добавить преподавателя'
+
+    create:
+      alert: 'Преподаватель успешно добавлен!'
+
+    destroy:
+      alert: 'Преподаватель успешно удален!'
+
+    table:
+      name: 'Имя'
+      position: 'Должность'
+      teachers: 'Преподаватели'
+      add: 'Добавить преподавателя'
+      no_teachers: 'Нет преподавателей.'
+
+  main_modules:
+    form:
+      title: 'Добавить модуль'
+
+    create:
+      alert: 'Модуль успешно добавлен!'
+
+    update:
+      alert: 'Модуль успешно изменен!'
+
+    destroy:
+      alert: 'Модуль успешно удален!'
+
+    table:
+      modules: 'Модули'
+      add: 'Добавить модуль'
+      no_modules: 'Нет модулей.'
+
+  activerecord:
+    errors:
+      messages:
+        blank: 'Поле должно быть заполнено!'
 
   simple_form:
     no: 'Нет'
@@ -21,6 +87,23 @@ ru:
 
         faculty_name: "Название факультет/центра"
 
+        semester_number: "Семестр"
+        type_of_control: "Вид контроля"
+        year_of_studying: "Год обучения"
+        lectures_count: "Количество лекций"
+        credits_count: "Количество кредитов"
+        labs_count: "Количество лабораторных работ"
+        total_hours_count: "Общее количество часов"
+        self_hours_count: "Количество часов самостоятельной работы"
+
+      scientist:
+        position: 'Должность'
+        name: 'Фамилия и инициалы'
+
+      main_module:
+        name: 'Наименование'
+        total_time: 'Количество часов'
+
     placeholders:
       document:
         discipline_code: "3.7."
@@ -33,3 +116,24 @@ ru:
         specialization_name: ""
 
         faculty_name: "прикладної математики"
+
+        labs_count: "Число"
+        credits_count: "Число"
+        lectures_count: "Число"
+        semester_number: "Число"
+        year_of_studying: "Число"
+        self_hours_count: "Число"
+        total_hours_count: "Число"
+
+      scientist:
+        name: 'Биленко А.В.'
+        position: 'Профессор'
+
+    prompts:
+      document:
+        type_of_control: 'Выберите один из видов контроля'
+
+  helpers:
+    submit:
+      create: 'Добавить'
+      update: 'Сохранить'
