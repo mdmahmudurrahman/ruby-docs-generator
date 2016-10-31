@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 feature Document do
   context '#unauthorized' do
     scenario '#index' do

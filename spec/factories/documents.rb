@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :document do
     user
 
-    number = Proc.new { Faker::Number.digit }
-    name = Proc.new { Faker::University.name }
-    code = Proc.new { Faker::Internet.ip_v4_address }
+    number = -> { Faker::Number.digit }
+    name = -> { Faker::University.name }
+    code = -> { Faker::Internet.ip_v4_address }
 
     %i(discipline_code field_of_study_code).each { |field| send field, &code }
 
