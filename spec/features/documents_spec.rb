@@ -1,8 +1,26 @@
 # frozen_string_literal: true
 feature Document do
   context '#unauthorized' do
+    let(:document) { create :document }
+
     scenario '#index' do
-      visit root_path; expect(page).to have_content 'Log in'
+      visit documents_path
+      text = I18n.t 'documents.new.title'
+      expect(page).not_to have_content text
+    end
+
+    scenario '#show' do
+      visit document_path document
+      text = I18n.t 'documents.edit.title'
+      expect(page).not_to have_content text
+    end
+
+    %i(new edit).each do |action|
+      scenario "#{action}" do
+        visit url_for [action, document]
+        text = I18n.t "documents.#{action}.title"
+        expect(page).not_to have_content text
+      end
     end
   end
 
@@ -31,7 +49,7 @@ feature Document do
         expect(page).to have_content text
 
         fill_document_form document
-        click_button 'Добавить'
+        click_button I18n.t 'helpers.submit.create'
 
         text = I18n.t 'documents.create.alert'
         expect(page).to have_content text
@@ -91,7 +109,7 @@ feature Document do
         expect(page).to have_content text
 
         fill_document_form document
-        click_button 'Сохранить'
+        click_button I18n.t 'helpers.submit.update'
 
         text = I18n.t 'documents.update.alert'
         expect(page).to have_content text

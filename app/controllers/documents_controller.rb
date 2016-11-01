@@ -11,6 +11,10 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  def show
+    render :edit
+  end
+
   def edit
   end
 

@@ -1,10 +1,8 @@
-<%= render 'application/alert' %>
-
 <%= simple_form_for document, form_options do |form| %>
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <%= t '.title_page' %>
+          <h4><%= t '.title_page' %></h4>
         </div>
 
         <div class="panel-body">
@@ -22,7 +20,7 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading text-center">
-          <%= t '.study_description' %>
+          <h4><%= t '.study_description' %></h4>
         </div>
 
         <div class="panel-body">
@@ -39,15 +37,25 @@
       </div>
     </div>
 
+    <% if document.persisted? %>
+        <div class="col-md-12">
+          <div class="delimiter"></div>
+        </div>
+
+        <div class="col-md-6">
+          <%= render 'main_modules/list', document: document %>
+        </div>
+    <% end %>
+
     <div class="col-md-12">
-      <div class="delimiter"></div>
+      <div class="form-controls">
+        <div class="pull-left">
+          <%= form.button :submit %>
+        </div>
 
-      <div class="pull-left">
-        <%= form.button :submit %>
-      </div>
-
-      <div class="pull-left cancel-link">
-        <%= link_to t('cancel'), root_path, class: 'text-danger' %>
+        <div class="pull-left cancel-link">
+          <%= link_to t('cancel'), root_path, class: 'text-danger' %>
+        </div>
       </div>
     </div>
 <% end %>

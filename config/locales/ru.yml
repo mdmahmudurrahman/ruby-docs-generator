@@ -34,6 +34,9 @@ ru:
     new:
       title: 'Добавить преподавателя'
 
+    edit:
+      title: 'Изменить преподавателя'
+
     create:
       alert: 'Преподаватель успешно добавлен!'
 
@@ -48,8 +51,11 @@ ru:
       no_teachers: 'Нет преподавателей.'
 
   main_modules:
-    form:
+    new:
       title: 'Добавить модуль'
+
+    edit:
+      title: 'Изменить модуль'
 
     create:
       alert: 'Модуль успешно добавлен!'
@@ -60,10 +66,10 @@ ru:
     destroy:
       alert: 'Модуль успешно удален!'
 
-    table:
+    list:
       modules: 'Модули'
       add: 'Добавить модуль'
-      no_modules: 'Нет модулей.'
+      no-modules: 'Нет модулей.'
 
   activerecord:
     errors:
@@ -85,7 +91,7 @@ ru:
         speciality_name: "Название специальности"
         specialization_name: "Название специализации"
 
-        faculty_name: "Название факультет/центра"
+        faculty_name: "Название факультета/центра"
 
         semester_number: "Семестр"
         type_of_control: "Вид контроля"

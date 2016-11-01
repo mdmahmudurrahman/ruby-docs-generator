@@ -1,6 +1,10 @@
 <div class="col-md-10 col-md-offset-1">
-  <div class="page-header text-center">
-    <h4><%= t '.title' %></h4>
+  <div class="col-md-12">
+    <%= render 'application/alert' %>
+
+    <div class="page-header text-center">
+      <h3><%= t '.title' %></h3>
+    </div>
   </div>
 
   <%= render 'form', document: @document %>

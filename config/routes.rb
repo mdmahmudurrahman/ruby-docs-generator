@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'document-data', to: 'documents#document_data'
 
     resources :scientists, except: %i(index show)
-    resources :main_modules, except: %i(index show)
+    resources :main_modules, except: %i(index)
   end
 
   scope 'main-modules/:main_module_id' do

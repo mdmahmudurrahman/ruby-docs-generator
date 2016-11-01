@@ -7,37 +7,35 @@ class MainModulesController < ApplicationController
     @main_module = MainModule.new
   end
 
-  def create
-    @main_module = MainModule.new main_module_params
-
-    if @document.main_modules << @main_module
-      flash[:alert] = t '.alert'
-      return redirect_to root_path
-    end
-
-    render :new
-  end
-
   def edit
   end
 
-  def update
-    if @main_module.update_attributes main_module_params
-      return redirect_to root_path, alert: t('.alert')
-    end
+  def create
+    @main_module = MainModule.create main_module_params_with_document
+    return render :new unless @main_module.persisted?
+    redirect_to @document, alert: t('.alert')
+  end
 
-    render :edit
+  def update
+    success = @main_module.update main_module_params
+    return render :edit unless success
+    flash[:alert] = t '.alert'
+    redirect_to @document
   end
 
   def destroy
-    @main_module.destroy
-    flash[:alert] = t '.alert'
-    redirect_to root_path
+    success = @main_module.destroy.destroyed?
+    flash[:alert] = t '.alert' if success
+    redirect_to @document
   end
 
   private
 
   def main_module_params
     params.require(:main_module).permit %i(name total_time)
+  end
+
+  def main_module_params_with_document
+    main_module_params.merge document: @document
   end
 end

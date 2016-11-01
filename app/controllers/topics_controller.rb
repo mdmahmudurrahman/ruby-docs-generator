@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
       return redirect_to new_sub_module_topic_path(@sub_module)
     end
 
-    render 'new.html.erb'
+    render :new
   end
 
   def edit
@@ -33,7 +33,7 @@ class TopicsController < ApplicationController
       return redirect_to edit_sub_module_topic_path(@sub_module, @topic)
     end
 
-    render 'edit.html.erb'
+    render :edit
   end
 
   def destroy

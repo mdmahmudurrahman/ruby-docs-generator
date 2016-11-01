@@ -15,8 +15,8 @@ SimpleForm.setup do |config|
     b.use :label, class: 'control-label'
 
     b.use :input, class: 'form-control'
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :error, wrap_with: { tag: 'span', class: 'help-block text-center' }
   end
 
   config.wrappers :vertical_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
