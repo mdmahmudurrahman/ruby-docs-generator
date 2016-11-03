@@ -130,6 +130,7 @@ feature Topic do
     end
 
     context '#with many topics' do
+      let(:topic) { topics.first }
       let(:topics) { sub_module.topics }
       let(:sub_module) { create :sub_module_with_topics }
 
@@ -140,6 +141,18 @@ feature Topic do
 
         text = I18n.t 'sub_modules.list.no-modules'
         expect(page).not_to have_content text
+      end
+
+      %w(lower higher).each do |type|
+        scenario "#move #{type}", js: true do
+          position = topic.position
+
+          text = I18n.t "move-#{type}"
+          first('a', text: text).click
+
+          new_position = topic.reload.position
+          expect(new_position).not_to eq position
+        end
       end
     end
   end

@@ -69,7 +69,7 @@ html {
 
 .glyphicon-option-vertical {
   height: 20px;
-  padding-top: 2px;
+  padding-top: 3px;
 
   &:hover + .menu-wrapper {
     display: block;
@@ -106,4 +106,8 @@ html {
   &:hover {
     display: block;
   }
+}
+
+.up-down-arrows {
+  width: 110px;
 }

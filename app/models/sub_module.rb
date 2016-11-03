@@ -4,7 +4,7 @@ class SubModule < ApplicationRecord
 
   belongs_to :main_module
 
-  has_many :topics, dependent: :destroy
+  has_many :topics, -> { order :position }, dependent: :destroy
 
   ###=> validations
 

@@ -3,6 +3,7 @@
     <%= topic.name %>
 
     <div class="pull-right">
+      <%= render 'application/movers', topic_movers_options(topic.sub_module, topic) %>
       <%= render 'application/menu', topic_menu_options(topic.sub_module, topic) %>
     </div>
   </div>

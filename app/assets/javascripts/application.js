@@ -11,6 +11,12 @@
 //= require_self
 
 $(function () {
+  const container = $('.panel-body-container');
+  const buttons = container.find('a.btn-xs');
+
+  buttons.first().hide();
+  buttons.last().hide();
+
   if ($('[action="documents#generate"]').length > 0) {
     const loadFile = function (url, callback) {
       JSZipUtils.getBinaryContent(url, callback);

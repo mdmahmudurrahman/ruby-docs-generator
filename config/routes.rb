@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   end
 
   scope 'sub-modules/:sub_module_id', as: 'sub_module' do
-    resources :topics, except: %i(index)
+    resources :topics, except: %i(index) do
+      put 'move-lower'
+      put 'move-higher'
+    end
   end
 end

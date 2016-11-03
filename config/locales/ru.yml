@@ -4,6 +4,9 @@ ru:
   update: 'Изменить'
   cancel: 'Отменить'
 
+  move-lower: 'Вниз'
+  move-higher: 'Вверх'
+
   documents:
     form:
       title_page: 'Титульная страница'

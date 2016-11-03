@@ -3,6 +3,11 @@ class TopicsController < ApplicationController
   load_and_authorize_resource :sub_module
   load_and_authorize_resource through: :sub_module
 
+  before_action only: %i(move_higher move_lower) do
+    query = { id: params.dig(:topic_id) }
+    @topic = Topic.find_by query
+  end
+
   def show
   end
 
@@ -31,6 +36,20 @@ class TopicsController < ApplicationController
   def destroy
     flash[:alert] = t '.alert' if @topic.destroy.destroyed?
     redirect_to [@sub_module.main_module, @sub_module]
+  end
+
+  def move_higher
+    @topic.move_higher
+    sub_module = @topic.sub_module
+    main_module = sub_module.main_module
+    redirect_to [main_module, sub_module]
+  end
+
+  def move_lower
+    @topic.move_lower
+    sub_module = @topic.sub_module
+    main_module = sub_module.main_module
+    redirect_to [main_module, sub_module]
   end
 
   private
