@@ -7,21 +7,25 @@ feature MainModule do
     scenario '#show' do
       visit document_main_module_path document, main_module
       expect(page).not_to have_content main_module.name
-      expect(page).to have_content 'Log in'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
 
     scenario '#new' do
       visit document_main_module_path document, main_module
-      text = I18n.t 'main_modules.new.title'
-      expect(page).not_to have_content text
-      expect(page).to have_content 'Log in'
+      expect(page).not_to have_content I18n.t 'main_modules.new.title'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
 
     scenario '#edit' do
       visit edit_document_main_module_path document, main_module
-      text = I18n.t 'main_modules.edit.title'
-      expect(page).not_to have_content text
-      expect(page).to have_content 'Log in'
+      expect(page).not_to have_content I18n.t 'main_modules.edit.title'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
   end
 

@@ -35,7 +35,7 @@ class SubModulesController < ApplicationController
 
   def sub_module_params
     params.require(:sub_module).permit %i(
-      name lectures_count labs_count
+      name labs_time lectures_time
     )
   end
 

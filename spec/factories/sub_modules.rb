@@ -4,8 +4,8 @@ FactoryGirl.define do
     main_module
 
     name { Faker::University.name }
-    labs_count { Faker::Number.digit }
-    lectures_count { Faker::Number.digit }
+    labs_time { Faker::Number.digit }
+    lectures_time { Faker::Number.digit }
 
     factory :sub_module_with_topics do
       transient { topics_count 3 }

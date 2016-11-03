@@ -8,21 +8,23 @@ class Ability
 
   def user_abilities(user)
     can :manage, Document, user: user
-    can :manage, Scientist, get_document(user)
-    can :manage, MainModule, get_document(user)
-    can :manage, SubModule, get_main_module(user)
-    can :manage, Topic, get_sub_module(user)
+
+    can :manage, Scientist, document_ability(user)
+    can :manage, MainModule, document_ability(user)
+
+    can :manage, Topic, sub_module_ability(user)
+    can :manage, SubModule, main_module_ability(user)
   end
 
-  def get_document(user)
+  def document_ability(user)
     { document: { user: user } }
   end
 
-  def get_main_module(user)
-    { main_module: get_document(user) }
+  def main_module_ability(user)
+    { main_module: document_ability(user) }
   end
 
-  def get_sub_module(user)
-    { sub_module: get_main_module(user) }
+  def sub_module_ability(user)
+    { sub_module: main_module_ability(user) }
   end
 end

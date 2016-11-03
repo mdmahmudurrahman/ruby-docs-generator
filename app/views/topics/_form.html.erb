@@ -1,8 +1,15 @@
 <%= simple_form_for [sub_module, topic] do |form| %>
-  <%= form.input :name %>
-  <%= form.input :lecture_count %>
-  <%= form.input :labs_count %>
-  <%= form.button :submit %>
-<% end %>
+    <%= form.input :name %>
+    <%= form.input :labs_time, input_html: { min: 0 } %>
+    <%= form.input :lectures_time, input_html: { min: 0 } %>
 
-<%= link_to t('cancel'), [sub_module.main_module, sub_module], class: 'text-danger' %>
+    <div class="form-controls clearfix">
+      <div class="pull-left">
+        <%= form.button :submit %>
+      </div>
+
+      <div class="pull-left cancel-link">
+        <%= link_to t('cancel'), [sub_module.main_module, sub_module], class: 'text-danger' %>
+      </div>
+    </div>
+<% end %>

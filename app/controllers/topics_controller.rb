@@ -6,6 +6,9 @@ class TopicsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def new
     @topic = Topic.new
   end
@@ -14,16 +17,15 @@ class TopicsController < ApplicationController
     @topic = Topic.create topic_params_with_sub_module
     return render :new unless @topic.persisted?
     flash[:alert] = I18n.t 'topics.create.alert'
-    redirect_to [@sub_module.main_module, @sub_module]
-  end
-
-  def edit
+    main_module = @sub_module.main_module
+    redirect_to [main_module, @sub_module]
   end
 
   def update
     return render :edit unless @topic.update topic_params
     flash[:alert] = I18n.t 'topics.update.alert'
-    redirect_to [@sub_module.main_module, @sub_module]
+    main_module = @sub_module.main_module
+    redirect_to [main_module, @sub_module]
   end
 
   def destroy
@@ -33,15 +35,13 @@ class TopicsController < ApplicationController
 
   private
 
-  def topic_params_with_sub_module
-    topic_params.merge sub_module: @sub_module
-  end
-
   def topic_params
     params.require(:topic).permit %i(
-      name
-      lecture_count
-      labs_count
+      name labs_time lectures_time
     )
+  end
+
+  def topic_params_with_sub_module
+    topic_params.merge sub_module: @sub_module
   end
 end

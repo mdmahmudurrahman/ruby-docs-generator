@@ -8,21 +8,25 @@ feature SubModule do
     scenario '#show' do
       visit main_module_sub_module_path main_module, sub_module
       expect(page).not_to have_content sub_module.name
-      expect(page).to have_content 'Log in'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
 
     scenario '#new' do
       visit main_module_sub_module_path main_module, sub_module
-      text = I18n.t 'sub_modules.new.title'
-      expect(page).not_to have_content text
-      expect(page).to have_content 'Log in'
+      expect(page).not_to have_content I18n.t 'sub_modules.new.title'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
 
     scenario '#edit' do
       visit edit_main_module_sub_module_path main_module, sub_module
-      text = I18n.t 'sub_modules.edit.title'
-      expect(page).not_to have_content text
-      expect(page).to have_content 'Log in'
+      expect(page).not_to have_content I18n.t 'sub_modules.edit.title'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
   end
 
@@ -145,7 +149,7 @@ feature SubModule do
   private
 
   def fill_in_form(sub_module)
-    %i(name labs_count lectures_count).each do |field|
+    %i(name labs_time lectures_time).each do |field|
       selector = "sub_module[#{field}]"
       value = sub_module.send field
       fill_in selector, with: value

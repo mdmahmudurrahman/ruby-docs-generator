@@ -5,6 +5,7 @@ gem 'devise', '~> 4.2'
 gem 'cancancan', '~> 1.15'
 gem 'responders', '~> 2.3'
 gem 'draper', '~> 3.0.0.pre1'
+gem 'devise-i18n', '~> 1.1', '>= 1.1.1'
 gem 'simple_form', '~> 3.3', '>= 3.3.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 

@@ -1,21 +1,32 @@
-feature Topic, focus: true do
+# frozen_string_literal: true
+feature Topic do
   context '#unauthorized' do
-    let(:main_module) { sub_module.main_module }
-    let(:sub_module) { topic.sub_module }
     let(:topic) { create :topic }
+    let(:sub_module) { topic.sub_module }
+    let(:main_module) { sub_module.main_module }
 
     scenario '#show' do
-      visit url_for [sub_module, topic]
+      visit sub_module_topic_path sub_module, topic
       expect(page).not_to have_content topic.name
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
 
-    %i(new edit).each do |action|
-      scenario "##{action}" do
-        visit url_for [action, main_module, sub_module]
-        text = I18n.t "topics.#{action}.title"
-        expect(page).not_to have_content text
-        expect(page).to have_content 'Log in'
-      end
+    scenario '#new' do
+      visit new_sub_module_topic_path main_module, sub_module
+      expect(page).not_to have_content I18n.t 'topics.new.title'
+
+      text = I18n.t 'devise.failure.unauthenticated'
+      expect(page).to have_content text
+    end
+
+    scenario '#edit' do
+      visit edit_sub_module_topic_path main_module, sub_module
+      expect(page).not_to have_content I18n.t 'topics.edit.title'
+
+      text = I18n.t 'devise.sessions.new.sign_in'
+      expect(page).to have_content text
     end
   end
 
@@ -112,36 +123,34 @@ feature Topic, focus: true do
         end
 
         scenario '#delete' do
-          text = I18n.t 'topics.destroy.alert'
-
-          expect(page).to have_content text
+          expect(page).to have_content I18n.t 'topics.destroy.alert'
           expect(page).to have_content sub_module.name
         end
       end
     end
 
     context '#with many topics' do
-       let(:sub_module) { create :sub_module_with_topics }
-       let(:topics) { sub_module.topics }
+      let(:topics) { sub_module.topics }
+      let(:sub_module) { create :sub_module_with_topics }
 
-       scenario '#index' do
-         topics.map(&:name).each do |name|
-           expect(page).to have_content name
-         end
+      scenario '#index' do
+        topics.map(&:name).each do |name|
+          expect(page).to have_content name
+        end
 
-         text = I18n.t 'sub_modules.list.no-modules'
-         expect(page).not_to have_content text
-       end
-     end
-   end
+        text = I18n.t 'sub_modules.list.no-modules'
+        expect(page).not_to have_content text
+      end
+    end
+  end
 
-   private
+  private
 
-   def fill_in_form(topic)
-     %i(name labs_count lecture_count).each do |field|
-       selector = "topic[#{field}]"
-       value = topic.send field
-       fill_in selector, with: value
-     end
-   end
+  def fill_in_form(topic)
+    %i(name labs_time lectures_time).each do |field|
+      selector = "topic[#{field}]"
+      value = topic.send field
+      fill_in selector, with: value
+    end
+  end
 end

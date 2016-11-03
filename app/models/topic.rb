@@ -6,5 +6,5 @@ class Topic < ApplicationRecord
 
   ###=> validations
 
-  validates :name, :lecture_count, :labs_count, :sub_module, presence: true
+  validates :name, :labs_time, :lectures_time, :sub_module, presence: true
 end
