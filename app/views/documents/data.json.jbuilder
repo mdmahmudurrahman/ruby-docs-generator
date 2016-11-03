@@ -26,5 +26,9 @@ json.main_modules document.main_modules do |main_module|
 
   json.sub_modules main_module.sub_modules do |sub_module|
     json.name sub_module.name
+
+    json.topics sub_module.topics do |topic|
+      json.name topic.name
+    end
   end
 end
