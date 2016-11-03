@@ -5,17 +5,23 @@ feature MainModule do
     let(:main_module) { create :main_module }
 
     scenario '#show' do
-      name = main_module.name
-      visit url_for [document, main_module]
-      expect(page).not_to have_content name
+      visit document_main_module_path document, main_module
+      expect(page).not_to have_content main_module.name
+      expect(page).to have_content 'Log in'
     end
 
-    %i(new edit).each do |action|
-      scenario "##{action}" do
-        visit url_for [action, document, main_module]
-        text = I18n.t "main_modules.#{action}.title"
-        expect(page).not_to have_content text
-      end
+    scenario '#new' do
+      visit document_main_module_path document, main_module
+      text = I18n.t 'main_modules.new.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
+    end
+
+    scenario '#edit' do
+      visit edit_document_main_module_path document, main_module
+      text = I18n.t 'main_modules.edit.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
     end
   end
 

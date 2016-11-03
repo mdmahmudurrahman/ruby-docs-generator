@@ -6,16 +6,23 @@ feature SubModule do
     let(:main_module) { sub_module.main_module }
 
     scenario '#show' do
-      visit url_for [main_module, sub_module]
+      visit main_module_sub_module_path main_module, sub_module
       expect(page).not_to have_content sub_module.name
+      expect(page).to have_content 'Log in'
     end
 
-    %i(new edit).each do |action|
-      scenario "##{action}" do
-        visit url_for [action, main_module, sub_module]
-        text = I18n.t "sub_modules.#{action}.title"
-        expect(page).not_to have_content text
-      end
+    scenario '#new' do
+      visit main_module_sub_module_path main_module, sub_module
+      text = I18n.t 'sub_modules.new.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
+    end
+
+    scenario '#edit' do
+      visit edit_main_module_sub_module_path main_module, sub_module
+      text = I18n.t 'sub_modules.edit.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
     end
   end
 

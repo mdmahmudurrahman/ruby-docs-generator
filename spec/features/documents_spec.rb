@@ -7,20 +7,28 @@ feature Document do
       visit documents_path
       text = I18n.t 'documents.new.title'
       expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
     end
 
     scenario '#show' do
       visit document_path document
       text = I18n.t 'documents.edit.title'
       expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
     end
 
-    %i(new edit).each do |action|
-      scenario action.to_s do
-        visit url_for [action, document]
-        text = I18n.t "documents.#{action}.title"
-        expect(page).not_to have_content text
-      end
+    scenario '#new' do
+      visit document_path document
+      text = I18n.t 'documents.new.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
+    end
+
+    scenario '#edit' do
+      visit edit_document_path document
+      text = I18n.t 'documents.edit.title'
+      expect(page).not_to have_content text
+      expect(page).to have_content 'Log in'
     end
   end
 
