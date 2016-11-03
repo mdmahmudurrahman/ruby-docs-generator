@@ -19,14 +19,11 @@ $(function () {
     loadFile("/assets/template.docx", function (error, content) {
       if (error) throw e;
 
-      const data = {};
       const doc = new Docxgen(content);
+      const url = $('.keeper-of-url').attr('url');
 
-      $.get('/documents/2/document-data', function (response) {
-        $.extend(data, response);
-
-        doc.setData(data);
-
+      $.get(url, function (response) {
+        doc.setData(response);
         doc.render();
 
         const out = doc.getZip().generate(

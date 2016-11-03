@@ -30,6 +30,9 @@ ru:
     destroy:
       alert: 'Документ успешно удален!'
 
+    generate:
+      generating: 'Документ генерируется...'
+
   scientists:
     new:
       title: 'Добавить преподавателя'

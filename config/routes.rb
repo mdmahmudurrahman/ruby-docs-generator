@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   root 'documents#index'
 
   resources :documents do
+    get 'data', to: 'documents#data'
     get 'generate', to: 'documents#generate'
-    get 'document-data', to: 'documents#document_data'
 
     resources :scientists, except: %i(index show)
 

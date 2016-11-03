@@ -3,6 +3,11 @@ class DocumentsController < ApplicationController
   load_and_authorize_resource
   decorates_assigned :document
 
+  before_action only: %i(data generate) do
+    query = { id: params[:document_id] }
+    @document = Document.find_by query
+  end
+
   def index
     @documents = @documents.decorate
   end
@@ -37,9 +42,7 @@ class DocumentsController < ApplicationController
     redirect_to root_path
   end
 
-  def document_data
-    query = { id: params[:document_id] }
-    @document = Document.find_by query
+  def data
   end
 
   def generate

@@ -23,5 +23,8 @@ end
 
 json.main_modules document.main_modules do |main_module|
   json.name main_module.name
-  json.hours main_module.total_time
+
+  json.sub_modules main_module.sub_modules do |sub_module|
+    json.name sub_module.name
+  end
 end
