@@ -4,6 +4,7 @@ FactoryGirl.define do
     main_module
 
     name { Faker::University.name }
+    position { Faker::Number.digit }
     labs_time { Faker::Number.digit }
     lectures_time { Faker::Number.digit }
 

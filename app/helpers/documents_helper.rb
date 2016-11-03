@@ -13,4 +13,9 @@ module DocumentsHelper
     { delete_link: document_main_module_path(document, main_module),
       update_link: edit_document_main_module_path(document, main_module) }
   end
+
+  def main_module_movers_options(document, main_module)
+    { move_higher_url: document_main_module_move_higher_path(document, main_module),
+      move_lower_url: document_main_module_move_lower_path(document, main_module) }
+  end
 end

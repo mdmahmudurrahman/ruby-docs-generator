@@ -3,6 +3,7 @@ FactoryGirl.define do
   factory :main_module do
     document
     name { Faker::Name.name }
+    position { Faker::Number.digit }
     total_time { Faker::Number.digit }
 
     factory :main_module_with_sub_modules do

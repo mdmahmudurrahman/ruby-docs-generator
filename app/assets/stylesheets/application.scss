@@ -108,6 +108,10 @@ html {
   }
 }
 
-.up-down-arrows {
-  width: 110px;
+.up-down-buttons {
+  width: 100px;
+
+  .btn.btn-xs {
+    width: 45px;
+  }
 }

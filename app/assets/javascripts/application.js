@@ -12,10 +12,13 @@
 
 $(function () {
   const container = $('.panel-body-container');
-  const buttons = container.find('a.btn-xs');
+  var buttons = container.find('a.btn-xs');
 
   buttons.first().hide();
   buttons.last().hide();
+
+  $(buttons.get(1)).css('width', '95px');
+  $(buttons.get(-2)).css('width', '95px');
 
   if ($('[action="documents#generate"]').length > 0) {
     const loadFile = function (url, callback) {

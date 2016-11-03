@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 class TopicsController < ApplicationController
+  include Movable
+
   load_and_authorize_resource :sub_module
   load_and_authorize_resource through: :sub_module
-
-  before_action only: %i(move_higher move_lower) do
-    query = { id: params.dig(:topic_id) }
-    @topic = Topic.find_by query
-  end
 
   def show
   end
@@ -38,20 +35,6 @@ class TopicsController < ApplicationController
     redirect_to [@sub_module.main_module, @sub_module]
   end
 
-  def move_higher
-    @topic.move_higher
-    sub_module = @topic.sub_module
-    main_module = sub_module.main_module
-    redirect_to [main_module, sub_module]
-  end
-
-  def move_lower
-    @topic.move_lower
-    sub_module = @topic.sub_module
-    main_module = sub_module.main_module
-    redirect_to [main_module, sub_module]
-  end
-
   private
 
   def topic_params
@@ -62,5 +45,17 @@ class TopicsController < ApplicationController
 
   def topic_params_with_sub_module
     topic_params.merge sub_module: @sub_module
+  end
+
+  def load_movable_entity
+    data = { id: params.dig(:topic_id) }
+    @topic = Topic.find_by data
+    @moveable_entity = @topic
+  end
+
+  def perform_post_moving_action
+    sub_module = @topic.sub_module
+    main_module = sub_module.main_module
+    redirect_to [main_module, sub_module]
   end
 end

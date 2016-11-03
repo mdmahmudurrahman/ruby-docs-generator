@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class MainModulesController < ApplicationController
+  include Movable
+
   load_and_authorize_resource :document
   load_and_authorize_resource through: :document
 
@@ -40,5 +42,15 @@ class MainModulesController < ApplicationController
 
   def main_module_params_with_document
     main_module_params.merge document: @document
+  end
+
+  def load_movable_entity
+    data = { id: params.dig(:main_module_id) }
+    @main_module = MainModule.find_by data
+    @moveable_entity = @main_module
+  end
+
+  def perform_post_moving_action
+    redirect_to @main_module.document
   end
 end

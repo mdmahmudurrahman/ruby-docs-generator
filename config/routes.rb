@@ -4,23 +4,25 @@ Rails.application.routes.draw do
 
   root 'documents#index'
 
+  concern :movable do
+    put 'move-lower'
+    put 'move-higher'
+  end
+
   resources :documents do
     get 'data', to: 'documents#data'
     get 'generate', to: 'documents#generate'
 
     resources :scientists, except: %i(index show)
 
-    resources :main_modules, path: 'main-modules', except: %i(index)
+    resources :main_modules, path: 'main-modules', except: %i(index), concerns: :movable
   end
 
   scope 'main-modules/:main_module_id', as: 'main_module' do
-    resources :sub_modules, path: 'sub-modules', except: %i(index)
+    resources :sub_modules, path: 'sub-modules', except: %i(index), concerns: :movable
   end
 
   scope 'sub-modules/:sub_module_id', as: 'sub_module' do
-    resources :topics, except: %i(index) do
-      put 'move-lower'
-      put 'move-higher'
-    end
+    resources :topics, except: %i(index), concerns: :movable
   end
 end

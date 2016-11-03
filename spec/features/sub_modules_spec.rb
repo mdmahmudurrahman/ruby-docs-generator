@@ -132,6 +132,7 @@ feature SubModule do
     end
 
     context '#with modules' do
+      let(:sub_module) { sub_modules.first }
       let(:sub_modules) { main_module.sub_modules }
       let(:main_module) { create :main_module_with_sub_modules }
 
@@ -142,6 +143,18 @@ feature SubModule do
 
         text = I18n.t 'sub_modules.list.no-modules'
         expect(page).not_to have_content text
+      end
+
+      %w(lower higher).each do |type|
+        scenario "#move #{type}", js: true do
+          position = sub_module.position
+
+          text = I18n.t "move-#{type}"
+          first('a', text: text).click
+
+          new_position = sub_module.reload.position
+          expect(new_position).not_to eq position
+        end
       end
     end
   end

@@ -130,6 +130,7 @@ feature MainModule do
     end
 
     context '#with modules' do
+      let(:main_module) { main_modules.first }
       let(:main_modules) { document.main_modules }
       let(:document) { create :document_with_main_modules }
 
@@ -140,6 +141,18 @@ feature MainModule do
 
         text = I18n.t 'main_modules.list.no-modules'
         expect(page).not_to have_content text
+      end
+
+      %w(lower higher).each do |type|
+        scenario "#move #{type}", js: true do
+          position = main_module.position
+
+          text = I18n.t "move-#{type}"
+          first('a', text: text).click
+
+          new_position = main_module.reload.position
+          expect(new_position).not_to eq position
+        end
       end
     end
   end

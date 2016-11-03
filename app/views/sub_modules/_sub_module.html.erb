@@ -3,6 +3,7 @@
     <%= link_to sub_module.name, [sub_module.main_module, sub_module] %>
 
     <div class="pull-right">
+      <%= render 'application/movers', sub_module_movers_options(sub_module.main_module, sub_module) %>
       <%= render 'application/menu', sub_module_menu_options(sub_module.main_module, sub_module) %>
     </div>
   </div>

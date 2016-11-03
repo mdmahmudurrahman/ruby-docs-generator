@@ -3,6 +3,7 @@ class CreateSubModules < ActiveRecord::Migration[5.0]
   def change
     create_table :sub_modules do |t|
       t.string :name
+      t.integer :position
       t.integer :labs_time
       t.integer :lectures_time
 

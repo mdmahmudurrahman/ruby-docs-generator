@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 class SubModule < ApplicationRecord
+  ###=> libs
+
+  acts_as_list scope: :main_module
+
   ###=> associations
 
   belongs_to :main_module

@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20161019191628) do
 
   create_table "main_modules", force: :cascade do |t|
     t.string   "name"
+    t.integer  "position"
     t.integer  "total_time"
     t.integer  "document_id", null: false
     t.datetime "created_at",  null: false
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20161019191628) do
 
   create_table "sub_modules", force: :cascade do |t|
     t.string   "name"
+    t.integer  "position"
     t.integer  "labs_time"
     t.integer  "lectures_time"
     t.integer  "main_module_id", null: false
