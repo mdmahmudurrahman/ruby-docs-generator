@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 class TopicsController < ApplicationController
-  before_action only: %i(edit update) do
-    @topic = Topic.find_by id: params[:id]
-    @sub_module = SubModule.find_by id: params[:sub_module_id]
-  end
+  load_and_authorize_resource :sub_module
+  load_and_authorize_resource through: :sub_module
 
-  before_action only: %i(new create) do
-    @sub_module = SubModule.find_by id: params[:sub_module_id]
+  def show
   end
 
   def new
@@ -14,35 +11,31 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new topic_params
-
-    if @sub_module.topics << @topic
-      flash[:success] = 'Тема успешно добавлена!'
-      return redirect_to new_sub_module_topic_path(@sub_module)
-    end
-
-    render :new
+    @topic = Topic.create topic_params_with_sub_module
+    return render :new unless @topic.persisted?
+    flash[:alert] = I18n.t 'topics.create.alert'
+    redirect_to [@sub_module.main_module, @sub_module]
   end
 
   def edit
   end
 
   def update
-    if @topic.update_attributes topic_params
-      flash[:success] = 'Тема успешно изменена!'
-      return redirect_to edit_sub_module_topic_path(@sub_module, @topic)
-    end
-
-    render :edit
+    return render :edit unless @topic.update topic_params
+    flash[:alert] = I18n.t 'topics.update.alert'
+    redirect_to [@sub_module.main_module, @sub_module]
   end
 
   def destroy
-    Topic.find_by(id: params[:id]).destroy
-
-    redirect_to root_path
+    flash[:alert] = t '.alert' if @topic.destroy.destroyed?
+    redirect_to [@sub_module.main_module, @sub_module]
   end
 
   private
+
+  def topic_params_with_sub_module
+    topic_params.merge sub_module: @sub_module
+  end
 
   def topic_params
     params.require(:topic).permit %i(
