@@ -8,5 +8,5 @@ class SubModule < ApplicationRecord
 
   ###=> validations
 
-  validates :name, :lecture_count, :labs_count, :main_module, presence: true
+  validates :name, :lectures_count, :labs_count, :main_module, presence: true
 end

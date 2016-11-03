@@ -3,6 +3,9 @@ class MainModulesController < ApplicationController
   load_and_authorize_resource :document
   load_and_authorize_resource through: :document
 
+  def show
+  end
+
   def new
     @main_module = MainModule.new
   end

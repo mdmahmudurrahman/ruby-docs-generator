@@ -16,7 +16,7 @@ feature Document do
     end
 
     %i(new edit).each do |action|
-      scenario "#{action}" do
+      scenario action.to_s do
         visit url_for [action, document]
         text = I18n.t "documents.#{action}.title"
         expect(page).not_to have_content text

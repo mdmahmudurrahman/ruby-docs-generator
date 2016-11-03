@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20161019191628) do
 
   create_table "sub_modules", force: :cascade do |t|
     t.string   "name"
-    t.integer  "lecture_count"
     t.integer  "labs_count"
+    t.integer  "lectures_count"
     t.integer  "main_module_id", null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

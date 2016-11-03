@@ -1,12 +1,17 @@
-feature MainModule, focus: true do
+# frozen_string_literal: true
+feature MainModule do
   context '#unauthorized' do
     let(:document) { main_module.document }
     let(:main_module) { create :main_module }
 
-    # TODO test for :show action
+    scenario '#show' do
+      name = main_module.name
+      visit url_for [document, main_module]
+      expect(page).not_to have_content name
+    end
 
     %i(new edit).each do |action|
-      scenario "#{action}" do
+      scenario "##{action}" do
         visit url_for [action, document, main_module]
         text = I18n.t "main_modules.#{action}.title"
         expect(page).not_to have_content text
@@ -17,10 +22,10 @@ feature MainModule, focus: true do
   context '#authorized' do
     let(:user) { document.user }
 
-    background { sign_in user; visit edit_document_path document }
+    background { sign_in user; visit url_for document }
 
     context '#without modules' do
-      let (:document) { create :document }
+      let(:document) { create :document }
 
       scenario '#index' do
         %w(modules no-modules add).each do |string|
@@ -63,6 +68,7 @@ feature MainModule, focus: true do
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
+          expect(page).to have_content I18n.t 'cancel'
         end
       end
 

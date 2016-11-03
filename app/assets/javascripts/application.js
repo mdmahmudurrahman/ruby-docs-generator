@@ -22,14 +22,16 @@ $(function () {
       const data = {};
       const doc = new Docxgen(content);
 
-      $.get('/documents/1/document-data', function (response) {
+      $.get('/documents/2/document-data', function (response) {
         $.extend(data, response);
 
         doc.setData(data);
 
         doc.render();
 
-        const out = doc.getZip().generate({type: "blob"});
+        const out = doc.getZip().generate(
+          {type: "blob"}
+        );
 
         saveAs(out, "output.docx");
       });

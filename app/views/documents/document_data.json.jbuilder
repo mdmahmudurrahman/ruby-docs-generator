@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 %i(faculty_name
    field_of_study
    discipline_code
@@ -18,4 +19,9 @@
    total_hours_count).each do |field|
 
   eval "json.#{field} document.send field"
+end
+
+json.main_modules document.main_modules do |main_module|
+  json.name main_module.name
+  json.hours main_module.total_time
 end

@@ -38,6 +38,8 @@ class DocumentsController < ApplicationController
   end
 
   def document_data
+    query = { id: params[:document_id] }
+    @document = Document.find_by query
   end
 
   def generate

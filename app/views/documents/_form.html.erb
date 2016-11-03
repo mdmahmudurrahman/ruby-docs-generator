@@ -56,6 +56,12 @@
         <div class="pull-left cancel-link">
           <%= link_to t('cancel'), root_path, class: 'text-danger' %>
         </div>
+
+        <% if document.persisted? %>
+            <div class="pull-right">
+              <%= link_to t('.generate_doc'), document_generate_path(document), class: 'btn btn-info' %>
+            </div>
+        <% end %>
       </div>
     </div>
 <% end %>

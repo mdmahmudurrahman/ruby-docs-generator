@@ -10,5 +10,10 @@ class Ability
     can :manage, Document, user: user
     can :manage, Scientist, document: { user: user }
     can :manage, MainModule, document: { user: user }
+    can :manage, SubModule, get_main_module(user)
+  end
+
+  def get_main_module(user)
+    { main_module: { document: { user: user } } }
   end
 end
