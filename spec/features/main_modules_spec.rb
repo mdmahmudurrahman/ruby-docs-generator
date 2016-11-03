@@ -21,8 +21,9 @@ feature MainModule do
 
   context '#authorized' do
     let(:user) { document.user }
+    background { sign_in user }
 
-    background { sign_in user; visit url_for document }
+    background { visit document_path document }
 
     context '#without modules' do
       let(:document) { create :document }
@@ -99,6 +100,20 @@ feature MainModule do
           %w(main_modules.update.alert
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
+          end
+        end
+      end
+
+      context '#delete', js: true do
+        background do
+          find('.glyphicon-option-vertical').hover
+          find('.delete-link').click
+        end
+
+        scenario '#delete' do
+          %w(main_modules.destroy.alert
+             documents.edit.title).each do |string|
+            expect(page).to have_content I18n.t string
           end
         end
       end

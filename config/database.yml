@@ -5,15 +5,11 @@ default: &default
 development:
   <<: *default
   database: ruby-docs-generator-dev
-  username: postgres
-  password: 123456
 
 test:
   <<: *default
   database: ruby-docs-generator-test
-  username: postgres
-  password: 123456
-  
+
 production:
   <<: *default
   username: ruby-docs-generator

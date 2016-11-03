@@ -1,7 +1,9 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-6 col-md-offset-3">
   <%= render 'application/alert' %>
-</div>
 
-<div class="col-md-8 col-md-offset-2">
+  <div class="page-header text-center">
+    <h4><%= @main_module.name %></h4>
+  </div>
+
   <%= render 'sub_modules/list', main_module: @main_module %>
 </div>

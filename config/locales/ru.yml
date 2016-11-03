@@ -131,6 +131,11 @@ ru:
         name: 'Наименование'
         total_time: 'Количество часов'
 
+      sub_module:
+        name: 'Наименование'
+        labs_count: 'Количество часов для лабораторных работ'
+        lectures_count: 'Количество часов для лекционных занятий'
+
     placeholders:
       document:
         discipline_code: "3.7."

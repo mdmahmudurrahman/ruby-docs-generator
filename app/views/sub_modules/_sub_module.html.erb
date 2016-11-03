@@ -1,10 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= link_to sub_module.name, [main_module, sub_module] %>
+    <%= link_to sub_module.name, [sub_module.main_module, sub_module] %>
 
     <div class="pull-right">
-      <%= render 'application/menu', delete_link: main_module_sub_module_path(main_module, sub_module),
-        update_link: edit_main_module_sub_module_path(main_module, sub_module) %>
+      <%= render 'application/menu', sub_module_menu_options(sub_module.main_module, sub_module) %>
     </div>
   </div>
 </div>

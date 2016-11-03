@@ -1,13 +1,13 @@
-feature SubModule, focus: true do
+# frozen_string_literal: true
+feature SubModule do
   context '#unauthorized' do
     let(:document) { main_module.document }
     let(:sub_module) { create :sub_module }
     let(:main_module) { sub_module.main_module }
 
     scenario '#show' do
-      name = sub_module.name
       visit url_for [main_module, sub_module]
-      expect(page).not_to have_content name
+      expect(page).not_to have_content sub_module.name
     end
 
     %i(new edit).each do |action|
@@ -23,7 +23,8 @@ feature SubModule, focus: true do
     let(:user) { document.user }
     let(:document) { main_module.document }
 
-    background { sign_in user; visit url_for [document, main_module] }
+    background { sign_in user }
+    background { visit document_main_module_path document, main_module }
 
     context '#without submodules' do
       let(:main_module) { create :main_module }
@@ -36,9 +37,9 @@ feature SubModule, focus: true do
       end
     end
 
-    context '#with one submodule' do
-      let(:main_module) { sub_module.main_module }
+    context '#with one sub module' do
       let(:sub_module) { create :sub_module }
+      let(:main_module) { sub_module.main_module }
 
       context '#create' do
         background do
@@ -62,9 +63,12 @@ feature SubModule, focus: true do
         scenario '#with invalid inputs' do
           click_on I18n.t 'helpers.submit.create'
 
-          expect(page).not_to have_content I18n.t 'sub_modules.create.alert'
-          expect(page).to have_content I18n.t 'sub_modules.new.title'
-          expect(page).to have_content I18n.t 'cancel'
+          %w(sub_modules.new.title cancel).each do |string|
+            expect(page).to have_content I18n.t string
+          end
+
+          text = I18n.t 'sub_modules.create.alert'
+          expect(page).not_to have_content text
         end
       end
 
@@ -82,7 +86,7 @@ feature SubModule, focus: true do
           fill_in_form sub_module
           click_button I18n.t 'helpers.submit.update'
 
-          %w(main_modules.update.alert
+          %w(sub_modules.update.alert
              sub_modules.list.add).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -92,9 +96,26 @@ feature SubModule, focus: true do
           fill_in_form SubModule.new
           click_button I18n.t 'helpers.submit.update'
 
-          expect(page).not_to have_content I18n.t 'sub_modules.update.alert'
-          expect(page).to have_content I18n.t 'sub_modules.edit.title'
-          expect(page).to have_content I18n.t 'cancel'
+          %w(sub_modules.edit.title cancel).each do |string|
+            expect(page).to have_content I18n.t string
+          end
+
+          text = I18n.t 'sub_modules.update.alert'
+          expect(page).not_to have_content text
+        end
+      end
+
+      context '#delete', js: true do
+        background do
+          find('.glyphicon-option-vertical').hover
+          find('.delete-link').click
+        end
+
+        scenario '#delete' do
+          text = I18n.t 'sub_modules.destroy.alert'
+          expect(page).to have_content text
+
+          expect(page).to have_content main_module.name
         end
       end
     end

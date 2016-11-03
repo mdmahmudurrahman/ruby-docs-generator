@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :sub_modules, path: 'sub-modules', except: %i(index)
   end
 
-  resources :sub_modules, path: 'sub-modules', only: [] do
-    resources :topics, except: %i(index show)
+  scope 'sub-modules/:sub_module_id', as: 'sub_module' do
+    resources :topics, except: %i(index)
   end
 end

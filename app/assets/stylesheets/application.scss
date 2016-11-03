@@ -9,8 +9,16 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-.container {
+.container, .alert {
+  margin-top: 10px;
+}
+
+.container[action="documents#index"] {
   margin-top: 20px;
+
+  .alert {
+    margin-top: 0;
+  }
 }
 
 .delimiter {
