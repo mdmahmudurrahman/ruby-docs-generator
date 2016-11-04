@@ -11,9 +11,9 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.string :faculty_name
       t.string :type_of_control
 
-      t.integer :labs_count
+      t.integer :labs_time
       t.integer :credits_count
-      t.integer :lectures_count
+      t.integer :lectures_time
       t.integer :semester_number
       t.integer :year_of_studying
       t.integer :self_hours_count

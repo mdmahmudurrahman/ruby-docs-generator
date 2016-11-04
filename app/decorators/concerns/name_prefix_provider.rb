@@ -3,7 +3,7 @@ module NamePrefixProvider
   extend ActiveSupport::Concern
 
   included do
-    def name_prefix(value)
+    def name_prefix(_value)
       raise NotImplementedException
     end
 

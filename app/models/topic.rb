@@ -10,5 +10,5 @@ class Topic < ApplicationRecord
 
   ###=> validations
 
-  validates :name, :labs_time, :lectures_time, :sub_module, presence: true
+  validates :name, :sub_module, presence: true
 end

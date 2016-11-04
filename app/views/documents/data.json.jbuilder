@@ -9,9 +9,9 @@
    field_of_study_name
    specialization_name
 
-   labs_count
+   labs_time
    credits_count
-   lectures_count
+   lectures_time
    semester_number
    type_of_control
    year_of_studying
@@ -32,12 +32,18 @@ json.main_modules document.main_modules do |main_module|
   json.sub_modules main_module.sub_modules do |sub_module|
     json.name_prefix sub_module.name_prefix sub_module_counter += 1
     json.table_label sub_module.table_label sub_module_counter
+    json.lectures_time sub_module.lectures_time
+    json.labs_time sub_module.labs_time
     json.name sub_module.name
 
     topic_counter = 0
+    topic_labs_time = sub_module.labs_time * 1.0 / sub_module.topics.count
+    topic_lectures_time = sub_module.lectures_time * 1.0 / sub_module.topics.count
 
     json.topics sub_module.topics do |topic|
       json.name_prefix topic.name_prefix topic_counter += 1
+      json.lectures_time topic_lectures_time
+      json.labs_time topic_labs_time
       json.name topic.name
     end
   end

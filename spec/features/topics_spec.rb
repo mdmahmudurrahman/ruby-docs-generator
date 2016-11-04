@@ -160,10 +160,8 @@ feature Topic do
   private
 
   def fill_in_form(topic)
-    %i(name labs_time lectures_time).each do |field|
-      selector = "topic[#{field}]"
-      value = topic.send field
-      fill_in selector, with: value
-    end
+    name = topic.name
+    selector = 'topic[name]'
+    fill_in selector, with: name
   end
 end

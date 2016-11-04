@@ -167,8 +167,8 @@ feature Document do
   def fill_document_form(document)
     select 'екзамен', from: 'document[type_of_control]'
 
-    %i(discipline_code field_of_study_code discipline_name faculty_name labs_count credits_count field_of_study_name
-       speciality_name specialization_name lectures_count semester_number year_of_studying self_hours_count
+    %i(discipline_code field_of_study_code discipline_name faculty_name labs_time credits_count field_of_study_name
+       speciality_name specialization_name lectures_time semester_number year_of_studying self_hours_count
        total_hours_count).each { |field| fill_in "document[#{field}]", with: document.send(field) }
   end
 end

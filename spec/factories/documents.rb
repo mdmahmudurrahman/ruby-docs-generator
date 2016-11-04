@@ -12,7 +12,7 @@ FactoryGirl.define do
     %i(discipline_name field_of_study_name speciality_name specialization_name
        faculty_name type_of_control).each { |field| send field, &name }
 
-    %i(labs_count credits_count lectures_count semester_number year_of_studying
+    %i(labs_time credits_count lectures_time semester_number year_of_studying
        self_hours_count total_hours_count).each { |field| send field, &number }
 
     factory :document_with_main_modules do

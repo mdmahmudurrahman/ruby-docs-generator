@@ -38,9 +38,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit %i(
-      name labs_time lectures_time
-    )
+    params.require(:topic).permit :name
   end
 
   def topic_params_with_sub_module
