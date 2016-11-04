@@ -48,3 +48,8 @@ json.main_modules document.main_modules do |main_module|
     end
   end
 end
+
+json.scientists document.scientists do |scientist|
+  json.name scientist.name
+  json.position scientist.position
+end

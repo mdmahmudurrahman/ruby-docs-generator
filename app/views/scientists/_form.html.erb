@@ -1,0 +1,14 @@
+<%= simple_form_for [document, scientist] do |form| %>
+    <%= form.input :name %>
+    <%= form.input :position %>
+
+    <div class="form-controls clearfix">
+      <div class="pull-left">
+        <%= form.button :submit %>
+      </div>
+
+      <div class="pull-left cancel-link">
+        <%= link_to t('cancel'), [:edit, document], class: 'text-danger' %>
+      </div>
+    </div>
+<% end %>

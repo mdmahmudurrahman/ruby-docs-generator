@@ -10,4 +10,6 @@ create :document, user: user do |document|
       create_list :topic, 4, sub_module: sub_module
     end
   end
+
+  create_list :scientist, 3, document: document
 end

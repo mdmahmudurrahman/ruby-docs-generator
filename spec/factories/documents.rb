@@ -23,5 +23,14 @@ FactoryGirl.define do
         create_list :main_module, count, document: document
       end
     end
+
+    factory :document_with_scientists do
+      transient { scientists_count 3 }
+
+      before(:create) do |document, evaluator|
+        count = evaluator.scientists_count
+        create_list :scientist, count, document: document
+      end
+    end
   end
 end
