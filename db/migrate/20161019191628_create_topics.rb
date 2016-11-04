@@ -6,6 +6,7 @@ class CreateTopics < ActiveRecord::Migration[5.0]
       t.integer :position
       t.integer :labs_time
       t.integer :lectures_time
+
       t.references :sub_module, foreign_key: true, null: false
 
       t.timestamps

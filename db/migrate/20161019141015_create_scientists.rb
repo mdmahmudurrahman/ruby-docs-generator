@@ -4,6 +4,7 @@ class CreateScientists < ActiveRecord::Migration[5.0]
     create_table :scientists do |t|
       t.string :name
       t.string :position
+
       t.references :document, foreign_key: true, null: false
 
       t.timestamps

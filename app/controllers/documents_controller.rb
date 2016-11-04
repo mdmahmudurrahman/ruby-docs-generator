@@ -5,7 +5,8 @@ class DocumentsController < ApplicationController
 
   before_action only: %i(data generate) do
     query = { id: params[:document_id] }
-    @document = Document.find_by query
+    dependencies = { main_modules: [sub_modules: [:topics]] }
+    @document = Document.includes(dependencies).find_by query
   end
 
   def index
