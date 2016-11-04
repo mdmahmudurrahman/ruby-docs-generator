@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading text-center">
+    <h4><%= t '.scientists' %></h4>
+  </div>
+
+  <div class="panel-body panel-body-container">
+    <% if document.scientists.empty? %>
+        <div class="text-center">
+          <%= t '.no-scientists' %>
+        </div>
+    <% else %>
+        <%= render document.scientists %>
+    <% end %>
+  </div>
+
+  <div class="panel-footer">
+    <%= link_to t('.add'), new_document_scientist_path(document) %>
+  </div>
+</div>

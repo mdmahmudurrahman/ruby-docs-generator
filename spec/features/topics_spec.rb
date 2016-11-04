@@ -129,7 +129,7 @@ feature Topic do
       end
     end
 
-    context '#with many topics', focus: true do
+    context '#with many topics' do
       let(:topic) { topics.first }
       let(:topics) { sub_module.topics }
       let(:sub_module) { create :sub_module_with_topics }
