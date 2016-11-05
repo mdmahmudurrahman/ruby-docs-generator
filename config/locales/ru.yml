@@ -1,11 +1,33 @@
 ru:
   back: 'Назад'
+  logout: 'Выйти'
   delete: 'Удалить'
   update: 'Изменить'
   cancel: 'Отменить'
 
   move-lower: 'Вниз'
   move-higher: 'Вверх'
+
+  users:
+    sessions:
+      new:
+        header: 'Вход'
+        submit: 'Войти'
+
+    registrations:
+      new:
+        header: 'Регистрация'
+        submit: 'Зарегистрироваться'
+
+    passwords:
+      new:
+        header: 'Забыли пароль?'
+        submit: 'Отправить инструкции по восстановлению'
+
+    links:
+      log_in: 'Вход'
+      sign_up: 'Регистрация'
+      new_password: 'Забыли пароль?'
 
   documents:
     form:
@@ -140,6 +162,10 @@ ru:
     yes: 'Да'
 
     labels:
+      user:
+        email: 'Электронная почта'
+        password: 'Пароль'
+
       document:
         discipline_code: "Шифр дисциплины"
         discipline_name: "Название дисциплины"
@@ -162,8 +188,8 @@ ru:
         self_hours_count: "Количество часов самостоятельной работы"
 
       scientist:
-        position: 'Должность'
         name: 'Фамилия и инициалы'
+        position: 'Должность'
 
       main_module:
         name: 'Наименование'
@@ -180,6 +206,10 @@ ru:
         lectures_time: 'Количество часов для лекционных занятий'
 
     placeholders:
+      user:
+        email: 'email@example.com'
+        password: '••••••••••••••••'
+
       document:
         discipline_code: "3.7."
         discipline_name: "Комп'ютерні мережі"

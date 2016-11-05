@@ -15,7 +15,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'control-label'
 
     b.use :input, class: 'form-control'
-    b.use :hint, wrap_with: { tag: 'p', class: 'help-block' }
+    b.use :hint, wrap_with: { tag: 'p', class: 'help-block text-center' }
     b.use :error, wrap_with: { tag: 'span', class: 'help-block text-center' }
   end
 

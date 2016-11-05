@@ -1,0 +1,27 @@
+<div class="col-md-4 col-md-offset-4">
+  <h3 class="page-header text-center">
+    <%= t '.header' %>
+  </h3>
+
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% if alert %>
+          <div class="alert alert-danger text-center">
+            <%= alert %>
+          </div>
+      <% end %>
+
+      <div class="form-inputs">
+        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :password, required: true %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions clearfix">
+        <%= f.button :submit, t('.submit'), class: 'col-md-12' %>
+      </div>
+  <% end %>
+
+  <div class="text-center">
+    <%= render 'users/shared/links' %>
+  </div>
+</div>
