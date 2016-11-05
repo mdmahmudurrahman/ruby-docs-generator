@@ -12,6 +12,4 @@ test:
 
 production:
   <<: *default
-  username: ruby-docs-generator
-  database: ruby-docs-generator-production
-  password: <%= ENV['RUBY_DOCS_GENERATOR_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

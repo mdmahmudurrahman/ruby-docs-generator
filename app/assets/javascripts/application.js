@@ -25,11 +25,15 @@ $(function () {
       JSZipUtils.getBinaryContent(url, callback);
     };
 
-    loadFile("/assets/template.docx", function (error, content) {
+    const template_url = $('.keeper-of-template-path').attr('url');
+
+    loadFile(template_url, function (error, content) {
       if (error) throw e;
 
       const doc = new Docxgen(content);
-      const url = $('.keeper-of-url').attr('url');
+      const url = $('.keeper-of-document-path').attr('url');
+
+      console.log(url);
 
       $.get(url, function (response) {
         doc.setData(response);

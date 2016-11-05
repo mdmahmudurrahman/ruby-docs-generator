@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+ruby '2.3.1'
+
 gem 'devise', '~> 4.2'
 gem 'cancancan', '~> 1.15'
 gem 'responders', '~> 2.3'
