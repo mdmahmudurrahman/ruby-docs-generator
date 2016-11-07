@@ -25,6 +25,7 @@ module RubyDocsGenerator
 
     config.i18n.default_locale = :ru
     config.action_controller.include_all_helpers = false
+    config.action_view.raise_on_missing_translations = true
     config.assets.paths << "#{Rails.root}/app/assets/templates"
   end
 end

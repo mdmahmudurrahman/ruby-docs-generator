@@ -11,7 +11,7 @@ ru:
   users:
     sessions:
       new:
-        header: 'Вход'
+        header: 'Войти'
         submit: 'Войти'
 
     registrations:
@@ -181,9 +181,9 @@ ru:
         semester_number: "Семестр"
         type_of_control: "Вид контроля"
         year_of_studying: "Год обучения"
-        lectures_count: "Количество лекций"
+        lectures_time: "Количество лекций"
         credits_count: "Количество кредитов"
-        labs_count: "Количество лабораторных работ"
+        labs_time: "Количество лабораторных работ"
         total_hours_count: "Общее количество часов"
         self_hours_count: "Количество часов самостоятельной работы"
 
