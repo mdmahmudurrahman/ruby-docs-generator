@@ -1,8 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-body">
-    <%= topic.name %>
+  <div class="panel-body truncate-text-container">
+    <div class="text clearfix">
+      <%= topic.name %>
+    </div>
 
-    <div class="pull-right">
+    <div class="controls clearfix">
       <%= render 'application/movers', topic_movers_options(topic.sub_module, topic) %>
       <%= render 'application/menu', topic_menu_options(topic.sub_module, topic) %>
     </div>

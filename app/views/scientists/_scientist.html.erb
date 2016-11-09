@@ -1,8 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-body">
-    <%= scientist.position %> <%= scientist.name %>
+  <div class="panel-body truncate-text-container">
+    <div class="text clearfix">
+      <%= scientist.position %> <%= scientist.name %>
+    </div>
 
-    <div class="pull-right">
+    <div class="controls clearfix" style="width: 30px">
       <%= render 'application/menu', scientist_menu_options(document, scientist) %>
     </div>
   </div>

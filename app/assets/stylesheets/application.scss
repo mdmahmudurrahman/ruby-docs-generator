@@ -121,3 +121,28 @@ html {
   right: 10px;
   position: fixed;
 }
+
+.truncate-text-container {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+
+  .text {
+    padding: 2px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-overflow: ellipsis;
+  }
+
+  .controls {
+    width: 130px;
+    padding-left: 15px;
+  }
+
+  > div {
+    width: inherit;
+    display: table-cell;
+  }
+}
