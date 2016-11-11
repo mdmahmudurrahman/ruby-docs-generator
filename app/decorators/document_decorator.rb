@@ -17,10 +17,10 @@ class DocumentDecorator < Draper::Decorator
   end
 
   def field_of_study
-    "#{field_of_study_code} #{field_of_study_name}".center 50, '_'
+    "#{field_of_study_code} #{field_of_study_name}"
   end
 
-  %i(faculty_name speciality_name specialization_name).each do |method|
-    define_method(method) { object.send(method).center 50, '_' }
+  %i(faculty_name speciality_name specialization_name field_of_study).each do |field|
+    define_method("formatted_#{field}") { self.send(field).center 50, '_' }
   end
 end

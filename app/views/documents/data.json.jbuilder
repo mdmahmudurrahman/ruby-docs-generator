@@ -8,6 +8,10 @@
    field_of_study_code
    field_of_study_name
    specialization_name
+   formatted_faculty_name
+   formatted_field_of_study
+   formatted_speciality_name
+   formatted_specialization_name
 
    labs_time
    credits_count
