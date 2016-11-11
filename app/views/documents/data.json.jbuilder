@@ -23,7 +23,15 @@
    total_hours_count
 
    cathedra_name
-   groups_codes).each do |field|
+   groups_codes
+
+   head_of_department
+   head_of_commission
+   head_of_academic_council
+
+   program_department_approved_date
+   program_commission_approved_date
+   program_academic_council_approved_date).each do |field|
 
   eval "json.#{field} document.send field"
 end

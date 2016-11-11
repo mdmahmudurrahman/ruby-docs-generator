@@ -190,6 +190,15 @@ feature Document do
     year_of_studying
     self_hours_count
     total_hours_count
+
+    head_of_department
+    program_department_approved_date
+
+    head_of_commission
+    program_commission_approved_date
+
+    head_of_academic_council
+    program_academic_council_approved_date
   ).freeze
 
   def fill_document_form(document)

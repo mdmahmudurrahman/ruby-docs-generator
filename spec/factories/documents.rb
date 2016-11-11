@@ -9,8 +9,10 @@ FactoryGirl.define do
 
     %i(discipline_code field_of_study_code).each { |field| send field, &code }
 
-    %i(discipline_name field_of_study_name speciality_name specialization_name
-       faculty_name type_of_control).each { |field| send field, &name }
+    %i(discipline_name field_of_study_name speciality_name specialization_name faculty_name type_of_control
+       head_of_department head_of_commission program_department_approved_date head_of_academic_council
+       program_commission_approved_date program_academic_council_approved_date
+       cathedra_name groups_codes).each { |field| send field, &name }
 
     %i(labs_time credits_count lectures_time semester_number year_of_studying
        self_hours_count total_hours_count).each { |field| send field, &number }

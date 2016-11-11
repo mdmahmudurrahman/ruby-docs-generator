@@ -54,6 +54,23 @@
       </div>
     </div>
 
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h4><%= t '.protocols' %></h4>
+        </div>
+
+        <div class="panel-body">
+          <% %i(department commission academic_council).each do |field| %>
+            <p><%= t ".program_approved_by_#{field}" %></p>
+
+            <%= form.input :"head_of_#{field}" %>
+            <%= form.input :"program_#{field}_approved_date" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     <% if document.persisted? %>
         <div class="col-md-12">
           <div class="delimiter"></div>

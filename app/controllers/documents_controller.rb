@@ -53,10 +53,11 @@ class DocumentsController < ApplicationController
 
   def document_params
     params.require(:document).permit %i(
-      field_of_study_name specialization_name labs_time credits_count
-      lectures_time faculty_name discipline_code discipline_name speciality_name
-      semester_number field_of_study_code type_of_control year_of_studying
-      self_hours_count total_hours_count cathedra_name groups_codes
+      field_of_study_name specialization_name labs_time credits_count lectures_time faculty_name discipline_code
+      discipline_name speciality_name semester_number field_of_study_code type_of_control year_of_studying
+      self_hours_count total_hours_count cathedra_name groups_codes head_of_department head_of_commission
+      program_department_approved_date head_of_academic_council program_commission_approved_date
+      program_academic_council_approved_date
     )
   end
 

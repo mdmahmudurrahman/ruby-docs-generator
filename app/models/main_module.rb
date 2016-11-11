@@ -6,7 +6,7 @@ class MainModule < ApplicationRecord
 
   ###=> associations
 
-  belongs_to :document
+  belongs_to :document, inverse_of: :main_modules
 
   has_many :sub_modules, -> { order :position }, dependent: :destroy
 

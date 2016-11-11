@@ -31,10 +31,14 @@ ru:
 
   documents:
     form:
+      protocols: 'Протоколы'
       title_page: 'Титульная страница'
       generate_doc: 'Сгенерировать документ'
       study_description: 'Описание учебной дисциплины'
       rating_system_description: 'Структура рейтинговой системы'
+      program_approved_by_department: "Рабочая программа утверждена на заседании кафедры ..."
+      program_approved_by_commission: "Одобрено научно-методической комиссией ..."
+      program_approved_by_academic_council: "Одобрено Ученым советом факультета ..."
 
     index:
       documents: 'Документы'
@@ -190,6 +194,15 @@ ru:
         self_hours_count: "Количество часов самостоятельной работы"
         groups_codes: "Шифры групп, в которых преподается дисциплина"
 
+        head_of_department: "Заведующий кафедры"
+        program_department_approved_date: "Протокол от ДД.ММ.ГГГГ"
+
+        head_of_commission: "Председатель комиссии"
+        program_commission_approved_date: "Протокол от ДД.ММ.ГГГГ"
+
+        head_of_academic_council: "Председатель ученого совета"
+        program_academic_council_approved_date: "Протокол от ДД.ММ.ГГГГ"
+
       scientist:
         name: 'Фамилия и инициалы'
         position: 'Должность'
@@ -225,13 +238,25 @@ ru:
 
         faculty_name: "прикладної математики"
 
-        labs_count: "Число"
+        labs_time: "Число"
         credits_count: "Число"
-        lectures_count: "Число"
+        lectures_time: "Число"
         semester_number: "Число"
         year_of_studying: "Число"
         self_hours_count: "Число"
         total_hours_count: "Число"
+
+        groups_codes: "ПМ-13-1, ПМ-13-2, ПЗ-13"
+        cathedra_name: "Математичного забезпечення ЕОМ"
+
+        head_of_department: "Биленко А.В."
+        program_department_approved_date: "ДД.ММ.ГГГГ"
+
+        head_of_commission: "Писаренко А.В."
+        program_commission_approved_date: "ДД.ММ.ГГГГ"
+
+        head_of_academic_council: "Борисенко А.В."
+        program_academic_council_approved_date: "ДД.ММ.ГГГГ"
 
       scientist:
         name: 'Биленко А.В.'

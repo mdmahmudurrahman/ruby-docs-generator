@@ -6,7 +6,7 @@ class Document < ApplicationRecord
 
   has_many :scientists, dependent: :destroy
 
-  has_many :main_modules, -> { order :position }, dependent: :destroy
+  has_many :main_modules, -> { order :position }, dependent: :destroy, inverse_of: :document
 
   ###=> validations
 
