@@ -37,6 +37,23 @@
       </div>
     </div>
 
+    <div class="col-md-12">
+      <div class="delimiter"></div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h4><%= t '.rating_system_description' %></h4>
+        </div>
+
+        <div class="panel-body">
+          <%= form.input :cathedra_name %>
+          <%= form.input :groups_codes %>
+        </div>
+      </div>
+    </div>
+
     <% if document.persisted? %>
         <div class="col-md-12">
           <div class="delimiter"></div>

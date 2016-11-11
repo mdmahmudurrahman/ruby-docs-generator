@@ -15,6 +15,7 @@ feature Document do
 
     scenario '#show' do
       visit document_path document
+
       text = I18n.t 'documents.edit.title'
       expect(page).not_to have_content text
 
@@ -24,6 +25,7 @@ feature Document do
 
     scenario '#new' do
       visit document_path document
+
       text = I18n.t 'documents.new.title'
       expect(page).not_to have_content text
 
@@ -33,6 +35,7 @@ feature Document do
 
     scenario '#edit' do
       visit edit_document_path document
+
       text = I18n.t 'documents.edit.title'
       expect(page).not_to have_content text
 
@@ -62,12 +65,13 @@ feature Document do
         text = I18n.t 'documents.index.add'
         find('a', text: text).click
 
-        text = I18n.t 'documents.new.title'
-        expect(page).to have_content text
+        %w(new.title form.rating_system_description).each do |identifier|
+          expect(page).to have_content I18n.t "documents.#{identifier}"
+        end
 
         fill_document_form document
-        click_button I18n.t 'helpers.submit.create'
 
+        click_button I18n.t 'helpers.submit.create'
         text = I18n.t 'documents.create.alert'
         expect(page).to have_content text
       end
@@ -138,8 +142,9 @@ feature Document do
 
         find('.update-link').click
 
-        text = I18n.t 'documents.edit.title'
-        expect(page).to have_content text
+        %w(edit.title form.rating_system_description).each do |identifier|
+          expect(page).to have_content I18n.t "documents.#{identifier}"
+        end
 
         find('a', text: I18n.t('cancel')).click
         text = I18n.t 'documents.update.alert'
@@ -164,11 +169,36 @@ feature Document do
 
   private
 
+  DOCUMENT_FORM_FIELDS = %i(
+    discipline_code
+    discipline_name
+
+    field_of_study_code
+    field_of_study_name
+
+    speciality_name
+    specialization_name
+
+    faculty_name
+
+    labs_time
+    groups_codes
+    credits_count
+    lectures_time
+    cathedra_name
+    semester_number
+    year_of_studying
+    self_hours_count
+    total_hours_count
+  ).freeze
+
   def fill_document_form(document)
     select 'екзамен', from: 'document[type_of_control]'
 
-    %i(discipline_code field_of_study_code discipline_name faculty_name labs_time credits_count field_of_study_name
-       speciality_name specialization_name lectures_time semester_number year_of_studying self_hours_count
-       total_hours_count).each { |field| fill_in "document[#{field}]", with: document.send(field) }
+    DOCUMENT_FORM_FIELDS.each do |field|
+      fill_in "document[#{field}]", with: document.send(field)
+      label = I18n.t "simple_form.labels.document.#{field}"
+      expect(page).to have_content label
+    end
   end
 end

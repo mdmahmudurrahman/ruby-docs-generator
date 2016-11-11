@@ -20,7 +20,10 @@
    type_of_control
    year_of_studying
    self_hours_count
-   total_hours_count).each do |field|
+   total_hours_count
+
+   cathedra_name
+   groups_codes).each do |field|
 
   eval "json.#{field} document.send field"
 end

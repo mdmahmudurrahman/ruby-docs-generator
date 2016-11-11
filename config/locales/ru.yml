@@ -34,6 +34,7 @@ ru:
       title_page: 'Титульная страница'
       generate_doc: 'Сгенерировать документ'
       study_description: 'Описание учебной дисциплины'
+      rating_system_description: 'Структура рейтинговой системы'
 
     index:
       documents: 'Документы'
@@ -181,11 +182,13 @@ ru:
         semester_number: "Семестр"
         type_of_control: "Вид контроля"
         year_of_studying: "Год обучения"
+        cathedra_name: "Название кафедры"
         lectures_time: "Количество лекций"
         credits_count: "Количество кредитов"
         labs_time: "Количество лабораторных работ"
         total_hours_count: "Общее количество часов"
         self_hours_count: "Количество часов самостоятельной работы"
+        groups_codes: "Шифры групп, в которых преподается дисциплина"
 
       scientist:
         name: 'Фамилия и инициалы'
