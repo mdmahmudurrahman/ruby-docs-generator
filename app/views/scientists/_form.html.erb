@@ -1,6 +1,8 @@
 <%= simple_form_for [document, scientist] do |form| %>
     <%= form.input :name %>
     <%= form.input :position %>
+    <%= form.input :examiner, as: :boolean %>
+    <%= form.input :labs_and_practicer, as: :boolean %>
 
     <div class="form-controls clearfix">
       <div class="pull-left">

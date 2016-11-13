@@ -78,6 +78,8 @@ ru:
       scientists: 'Преподователи'
       add: 'Добавить преподователя'
       no-scientists: 'Нет преподователй.'
+      examiner: 'Экзаменатор'
+      labs_and_practicer: 'Лаб. и прак. занятия'
 
   main_modules:
     new:
@@ -190,6 +192,8 @@ ru:
       scientist:
         name: 'Фамилия и инициалы'
         position: 'Должность'
+        examiner: 'Экзаменатор'
+        labs_and_practicer: 'Лаб. и прак. занятия'
 
       main_module:
         name: 'Наименование'

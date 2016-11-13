@@ -32,7 +32,7 @@ class ScientistsController < ApplicationController
   private
 
   def scientist_params
-    params.require(:scientist).permit %i(name position)
+    params.require(:scientist).permit %i(name position examiner labs_and_practicer)
   end
 
   def scientist_params_with_document
