@@ -1,15 +1,13 @@
-<%= simple_form_for [main_module, sub_module] do |form| %>
-    <%= form.input :name %>
-    <%= form.input :labs_time, input_html: { min: 0 } %>
-    <%= form.input :lectures_time, input_html: { min: 0 } %>
+<%= form.input :name %>
+<%= form.input :labs_time, input_html: { min: 0 } %>
+<%= form.input :lectures_time, input_html: { min: 0 } %>
 
-    <div class="form-controls clearfix">
-      <div class="pull-left">
-        <%= form.button :submit %>
-      </div>
+<div class="form-controls clearfix">
+  <div class="pull-left">
+    <%= form.button :submit %>
+  </div>
 
-      <div class="pull-left cancel-link">
-        <%= link_to t('cancel'), [main_module.document, main_module], class: 'text-danger' %>
-      </div>
-    </div>
-<% end %>
+  <div class="pull-left cancel-link">
+    <%= link_to t('cancel'), main_module, class: 'text-danger' %>
+  </div>
+</div>

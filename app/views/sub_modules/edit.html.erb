@@ -3,5 +3,7 @@
     <h3><%= t '.title' %></h3>
   </div>
 
-  <%= render 'form', main_module: @main_module, sub_module: @sub_module %>
+  <%= simple_form_for @sub_module do |form| %>
+    <%= render 'form', main_module: @main_module, form: form %>
+  <% end %>
 </div>

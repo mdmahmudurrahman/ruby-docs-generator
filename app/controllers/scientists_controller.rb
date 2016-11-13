@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 class ScientistsController < ApplicationController
-  load_and_authorize_resource :document
-  load_and_authorize_resource through: :document
+  load_and_authorize_resource
+  skip_authorize_resource only: %i(new create)
+  load_and_authorize_resource :document, only: %i(new create)
+
+  before_action :initialize_document, except: %i(new create)
 
   def new
-    @scientist = Scientist.new
   end
 
   def edit
@@ -30,6 +32,10 @@ class ScientistsController < ApplicationController
   end
 
   private
+
+  def initialize_document
+    @document = @scientist.document
+  end
 
   def scientist_params
     params.require(:scientist).permit %i(name position)

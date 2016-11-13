@@ -11,6 +11,7 @@ gem 'acts_as_list', '~> 0.8.2'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'devise-i18n', '~> 1.1', '>= 1.1.1'
 gem 'simple_form', '~> 3.3', '>= 3.3.1'
+gem 'lodash-rails', '~> 4.16', '>= 4.16.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -28,7 +28,7 @@ html {
 }
 
 .form-controls {
-  margin-top: 25px;
+  margin-top: 10px;
   padding-top: 15px;
   border-top: 1px solid #e1e1e1;
 }
@@ -145,4 +145,22 @@ html {
     width: inherit;
     display: table-cell;
   }
+}
+
+.calculate-time-automatically-checkbox {
+  margin-bottom: 15px;
+}
+
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 3px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+.controls {
+  bottom: 3px;
+  position: relative;
 }

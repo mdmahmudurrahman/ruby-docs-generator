@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddProtocolsToDocument < ActiveRecord::Migration[5.0]
   def change
     add_column :documents, :head_of_department, :string

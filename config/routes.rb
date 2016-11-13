@@ -13,16 +13,24 @@ Rails.application.routes.draw do
     get 'data', to: 'documents#data'
     get 'generate', to: 'documents#generate'
 
-    resources :scientists, except: %i(index show)
+    resources :scientists, only: %i(new create)
 
-    resources :main_modules, path: 'main-modules', except: %i(index), concerns: :movable
+    resources :main_modules, path: 'main-modules', only: %i(new create)
   end
+
+  resources :scientists, except: %i(index show new create)
+
+  resources :main_modules, path: 'main-modules', except: %i(new create), concerns: :movable
 
   scope 'main-modules/:main_module_id', as: 'main_module' do
-    resources :sub_modules, path: 'sub-modules', except: %i(index), concerns: :movable
+    resources :sub_modules, path: 'sub-modules', only: %i(new create)
   end
 
+  resources :sub_modules, path: 'sub-modules', except: %i(new create), concerns: :movable
+
   scope 'sub-modules/:sub_module_id', as: 'sub_module' do
-    resources :topics, except: %i(index), concerns: :movable
+    resources :topics, only: %i(new create)
   end
+
+  resources :topics, except: %i(new show create), concerns: :movable
 end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 module SubModulesHelper
-  def topic_menu_options(sub_module, topic)
-    { delete_link: sub_module_topic_path(sub_module, topic),
-      update_link: edit_sub_module_topic_path(sub_module, topic) }
+  def topic_menu_options(topic)
+    { delete_link: topic_path(topic),
+      update_link: edit_topic_path(topic) }
   end
 
-  def topic_movers_options(sub_module, topic)
-    { move_higher_url: sub_module_topic_move_higher_path(sub_module, topic),
-      move_lower_url: sub_module_topic_move_lower_path(sub_module, topic) }
+  def topic_movers_options(topic)
+    { move_higher_url: topic_move_higher_path(topic),
+      move_lower_url: topic_move_lower_path(topic) }
   end
 end

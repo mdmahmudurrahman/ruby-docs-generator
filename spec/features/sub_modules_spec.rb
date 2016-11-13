@@ -6,36 +6,28 @@ feature SubModule do
     let(:main_module) { sub_module.main_module }
 
     scenario '#show' do
-      visit main_module_sub_module_path main_module, sub_module
+      visit sub_module_path sub_module
       expect(page).not_to have_content sub_module.name
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
 
     scenario '#new' do
-      visit main_module_sub_module_path main_module, sub_module
+      visit new_main_module_sub_module_path main_module, sub_module
       expect(page).not_to have_content I18n.t 'sub_modules.new.title'
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.failure.unauthenticated'
     end
 
     scenario '#edit' do
-      visit edit_main_module_sub_module_path main_module, sub_module
+      visit edit_sub_module_path sub_module
       expect(page).not_to have_content I18n.t 'sub_modules.edit.title'
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
   end
 
   context '#authorized' do
     let(:user) { document.user }
     let(:document) { main_module.document }
-
-    background { sign_in user }
-    background { visit document_main_module_path document, main_module }
+    background { sign_in user; visit main_module_path main_module }
 
     context '#without submodules' do
       let(:main_module) { create :main_module }
@@ -149,6 +141,7 @@ feature SubModule do
         scenario "#move #{type}", js: true do
           position = sub_module.position
 
+          sleep 1
           text = I18n.t "move-#{type}"
           first('a', text: text).click
 

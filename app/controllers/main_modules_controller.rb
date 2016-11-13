@@ -2,14 +2,16 @@
 class MainModulesController < ApplicationController
   include Movable
 
-  load_and_authorize_resource :document
-  load_and_authorize_resource through: :document
+  load_and_authorize_resource
+  skip_authorize_resource only: %i(new create)
+  load_and_authorize_resource :document, only: %i(new create)
+
+  before_action :initialize_document, except: %i(new create)
 
   def show
   end
 
   def new
-    @main_module = MainModule.new
   end
 
   def edit
@@ -35,6 +37,10 @@ class MainModulesController < ApplicationController
   end
 
   private
+
+  def initialize_document
+    @document = @main_module.document
+  end
 
   def main_module_params
     params.require(:main_module).permit %i(name total_time)

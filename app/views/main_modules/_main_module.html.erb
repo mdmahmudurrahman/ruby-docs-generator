@@ -1,12 +1,12 @@
 <div class="panel panel-default">
   <div class="panel-body truncate-text-container">
     <div class="text clearfix">
-      <%= link_to main_module.name, [document, main_module] %>
+      <%= link_to main_module.name, main_module %>
     </div>
 
     <div class="controls clearfix">
-      <%= render 'application/movers', main_module_movers_options(main_module.document, main_module) %>
-      <%= render 'application/menu', main_module_menu_options(document, main_module) %>
+      <%= render 'application/movers', main_module_movers_options(main_module) %>
+      <%= render 'application/menu', main_module_menu_options(main_module) %>
     </div>
   </div>
 </div>

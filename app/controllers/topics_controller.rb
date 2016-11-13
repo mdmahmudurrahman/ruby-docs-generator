@@ -2,43 +2,48 @@
 class TopicsController < ApplicationController
   include Movable
 
-  load_and_authorize_resource :sub_module
-  load_and_authorize_resource through: :sub_module
+  load_and_authorize_resource
+  skip_authorize_resource only: %i(new create)
+  load_and_authorize_resource :sub_module, only: %i(new create)
 
-  def show
+  before_action :initialize_sub_module, except: %i(new create)
+
+  def new
+    @topic = Topic.new calculate_time: true
   end
 
   def edit
   end
 
-  def new
-    @topic = Topic.new
-  end
-
   def create
     @topic = Topic.create topic_params_with_sub_module
     return render :new unless @topic.persisted?
-    flash[:alert] = I18n.t 'topics.create.alert'
-    main_module = @sub_module.main_module
-    redirect_to [main_module, @sub_module]
+    @sub_module.calculate_topics_time
+    flash[:alert] = t '.alert'
+    redirect_to @sub_module
   end
 
   def update
     return render :edit unless @topic.update topic_params
-    flash[:alert] = I18n.t 'topics.update.alert'
-    main_module = @sub_module.main_module
-    redirect_to [main_module, @sub_module]
+    @sub_module.calculate_topics_time
+    flash[:alert] = t '.alert'
+    redirect_to @sub_module
   end
 
   def destroy
-    flash[:alert] = t '.alert' if @topic.destroy.destroyed?
-    redirect_to [@sub_module.main_module, @sub_module]
+    destroyed = @topic.destroy.destroyed?
+    @sub_module.calculate_topics_time if destroyed
+    redirect_to @sub_module, alert: t('topics.destroy.alert')
   end
 
   private
 
+  def initialize_sub_module
+    @sub_module = @topic.sub_module
+  end
+
   def topic_params
-    params.require(:topic).permit :name
+    params.require(:topic).permit %i(name labs_time lectures_time calculate_time)
   end
 
   def topic_params_with_sub_module
@@ -52,8 +57,6 @@ class TopicsController < ApplicationController
   end
 
   def perform_post_moving_action
-    sub_module = @topic.sub_module
-    main_module = sub_module.main_module
-    redirect_to [main_module, sub_module]
+    redirect_to @sub_module
   end
 end

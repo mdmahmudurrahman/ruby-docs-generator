@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111205036) do
+ActiveRecord::Schema.define(version: 20161112200058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,9 +78,12 @@ ActiveRecord::Schema.define(version: 20161111205036) do
   create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.integer  "position"
-    t.integer  "sub_module_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "sub_module_id",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "labs_time"
+    t.integer  "lectures_time"
+    t.boolean  "calculate_time"
     t.index ["sub_module_id"], name: "index_topics_on_sub_module_id", using: :btree
   end
 

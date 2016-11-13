@@ -22,8 +22,8 @@
    self_hours_count
    total_hours_count
 
-   cathedra_name
    groups_codes
+   cathedra_name
 
    head_of_department
    head_of_commission

@@ -5,27 +5,21 @@ feature MainModule do
     let(:main_module) { create :main_module }
 
     scenario '#show' do
-      visit document_main_module_path document, main_module
+      visit main_module_path main_module
       expect(page).not_to have_content main_module.name
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
 
     scenario '#new' do
-      visit document_main_module_path document, main_module
+      visit new_document_main_module_path document, main_module
       expect(page).not_to have_content I18n.t 'main_modules.new.title'
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.failure.unauthenticated'
     end
 
     scenario '#edit' do
-      visit edit_document_main_module_path document, main_module
+      visit edit_main_module_path main_module
       expect(page).not_to have_content I18n.t 'main_modules.edit.title'
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
   end
 
@@ -144,9 +138,10 @@ feature MainModule do
       end
 
       %w(lower higher).each do |type|
-        scenario "#move #{type}", js: true do
+        scenario "#move #{type}", focus: true, js: true do
           position = main_module.position
 
+          sleep 3
           text = I18n.t "move-#{type}"
           first('a', text: text).click
 

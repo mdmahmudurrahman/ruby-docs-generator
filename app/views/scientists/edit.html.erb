@@ -3,5 +3,7 @@
     <%= t '.title' %>
   </h3>
 
-  <%= render 'form', document: @document, scientist: @scientist %>
+  <%= simple_form_for @scientist do |form| %>
+    <%= render 'form', document: @document, form: form %>
+  <% end %>
 </div>

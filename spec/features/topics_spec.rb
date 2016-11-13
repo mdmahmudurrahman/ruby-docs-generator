@@ -3,42 +3,27 @@ feature Topic do
   context '#unauthorized' do
     let(:topic) { create :topic }
     let(:sub_module) { topic.sub_module }
-    let(:main_module) { sub_module.main_module }
-
-    scenario '#show' do
-      visit sub_module_topic_path sub_module, topic
-      expect(page).not_to have_content topic.name
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
-    end
 
     scenario '#new' do
-      visit new_sub_module_topic_path main_module, sub_module
+      visit new_sub_module_topic_path sub_module
       expect(page).not_to have_content I18n.t 'topics.new.title'
-
-      text = I18n.t 'devise.failure.unauthenticated'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.failure.unauthenticated'
     end
 
     scenario '#edit' do
-      visit edit_sub_module_topic_path main_module, sub_module
+      visit edit_topic_path topic
       expect(page).not_to have_content I18n.t 'topics.edit.title'
-
-      text = I18n.t 'devise.sessions.new.sign_in'
-      expect(page).to have_content text
+      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
   end
 
   context '#authorized' do
-    let(:user) { main_module.document.user }
-    let(:main_module) { sub_module.main_module }
+    let(:user) { sub_module.main_module.document.user }
+    background { sign_in user; visit sub_module_path sub_module }
 
-    background { sign_in user }
-    background { visit main_module_sub_module_path main_module, sub_module }
-
-    context '#without submodules' do
-      let(:sub_module) { create :sub_module }
+    context '#without sub modules' do
+      let(:topic) { build :topic, labs_time: 2, lectures_time: 2 }
+      let(:sub_module) { create :sub_module, labs_time: 6, lectures_time: 6 }
 
       scenario '#index' do
         %w(modules no-modules add).each do |string|
@@ -46,28 +31,136 @@ feature Topic do
           expect(page).to have_content text
         end
       end
+
+      context '#create', js: true do
+        background do
+          # open form for creating new topic
+          click_on I18n.t 'topics.list.add'
+
+          # check form name and controls
+          %w(topics.new.title cancel).each do |string|
+            expect(page).to have_content I18n.t string
+          end
+
+          # check absence of fields for labs and lectures
+          # time - by default these fields are hidden
+          %w(labs_time lectures_time).each do |string|
+            text = I18n.t "simple_form.labels.topics.#{string}"
+            expect(page).not_to have_content text
+          end
+
+          # check status of checkbox
+          checkbox = find 'input[type="checkbox"]'
+          expect(checkbox).to be_checked
+        end
+
+        scenario '#with valid name and checkbox' do
+          # fill name field and submit the form
+          fill_in 'topic[name]', with: topic.name
+          click_on I18n.t 'helpers.submit.create'
+
+          # check alert and add link
+          %w(create.alert list.add).each do |string|
+            text = I18n.t "topics.#{string}"
+            expect(page).to have_content text
+          end
+
+          topic = sub_module.topics.first
+
+          # check topic labs and lectures time
+          %i(labs_time lectures_time).each do |field|
+            expect(topic.send field).to eq 6
+          end
+        end
+
+        scenario '#with valid name, labs and lectures time' do
+          # change checkbox status for displaying
+          # labs and lectures inputs
+          find('input[type="checkbox"]').set false
+
+          # fill name field and submit the form
+          fill_in_topic_form topic
+          click_on I18n.t 'helpers.submit.create'
+
+          # check alert and add link
+          %w(create.alert list.add).each do |string|
+            text = I18n.t "topics.#{string}"
+            expect(page).to have_content text
+          end
+
+          topic = sub_module.topics.first
+
+          # check topic labs and lectures time
+          %i(labs_time lectures_time).each do |field|
+            expect(topic.send field).to eq 2
+          end
+        end
+      end
     end
 
-    context '#with one sub module' do
+    context '#with one sub module', js: true do
       let(:topic) { create :topic }
       let(:sub_module) { topic.sub_module }
 
-      context '#create' do
+      context '#create', js: true do
+        let(:topic) { create :topic, calculate_time: true }
+
         background do
           click_on I18n.t 'topics.list.add'
 
           %w(topics.new.title cancel).each do |string|
             expect(page).to have_content I18n.t string
           end
+
+          %w(labs_time lectures_time).each do |string|
+            text = I18n.t "simple_form.labels.topics.#{string}"
+            expect(page).not_to have_content text
+          end
+
+          checkbox = find 'input[type="checkbox"]'
+          expect(checkbox).to be_checked
         end
 
-        scenario '#with valid inputs' do
-          fill_in_form topic
+        scenario '#with valid name and checkbox' do
+          # fill name field and submit the form
+          fill_in 'topic[name]', with: topic.name
           click_on I18n.t 'helpers.submit.create'
 
-          %w(topics.create.alert
-             topics.list.add).each do |string|
-            expect(page).to have_content I18n.t string
+          # check alert and add link
+          %w(create.alert list.add).each do |string|
+            text = I18n.t "topics.#{string}"
+            expect(page).to have_content text
+          end
+
+          new_topic = sub_module.topics.last
+
+          # check topic labs and lectures time
+          %i(labs_time lectures_time).each do |field|
+            expect(new_topic.send field).to eq \
+              sub_module.send(field) / 2
+          end
+        end
+
+        scenario '#with valid name, labs and lectures time' do
+          # change checkbox status for displaying
+          # labs and lectures inputs
+          find('input[type="checkbox"]').set false
+
+          # fill name field and submit the form
+          fill_in_topic_form topic
+          click_on I18n.t 'helpers.submit.create'
+
+          # check alert and add link
+          %w(create.alert list.add).each do |string|
+            text = I18n.t "topics.#{string}"
+            expect(page).to have_content text
+          end
+
+          new_topic = sub_module.topics.last
+
+          # check topic labs and lectures time
+          %i(labs_time lectures_time).each do |field|
+            expect(new_topic.send field).to eq topic.send(field)
           end
         end
 
@@ -84,6 +177,8 @@ feature Topic do
       end
 
       context '#update', js: true do
+        let(:topic) { create :topic, calculate_time: false }
+
         background do
           find('.glyphicon-option-vertical').hover
           find('.update-link').click
@@ -94,7 +189,7 @@ feature Topic do
         end
 
         scenario '#with valid inputs' do
-          fill_in_form topic
+          fill_in_topic_form topic
           click_button I18n.t 'helpers.submit.update'
 
           %w(topics.update.alert
@@ -104,7 +199,7 @@ feature Topic do
         end
 
         scenario '#with invalid inputs' do
-          fill_in_form Topic.new
+          fill_in_topic_form Topic.new
           click_button I18n.t 'helpers.submit.update'
 
           %w(topics.edit.title cancel).each do |string|
@@ -147,6 +242,7 @@ feature Topic do
         scenario "#move #{type}", js: true do
           position = topic.position
 
+          sleep 1
           text = I18n.t "move-#{type}"
           first('a', text: text).click
 
@@ -159,9 +255,13 @@ feature Topic do
 
   private
 
-  def fill_in_form(topic)
-    name = topic.name
-    selector = 'topic[name]'
-    fill_in selector, with: name
+  TOPIC_FIELDS = %i(name labs_time lectures_time).freeze
+
+  def fill_in_topic_form(topic)
+    TOPIC_FIELDS.each do |field|
+      value = topic.send field
+      selector = "topic[#{field}]"
+      fill_in selector, with: value
+    end
   end
 end

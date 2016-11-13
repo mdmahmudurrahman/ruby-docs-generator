@@ -1,12 +1,16 @@
 <div class="panel panel-default">
-  <div class="panel-body truncate-text-container">
-    <div class="text clearfix">
-      <%= topic.name %>
-    </div>
+  <div class="panel-body">
+    <h5 class="truncate"><%= topic.name %></h5>
 
-    <div class="controls clearfix">
-      <%= render 'application/movers', topic_movers_options(topic.sub_module, topic) %>
-      <%= render 'application/menu', topic_menu_options(topic.sub_module, topic) %>
+    <em><%= t '.lectures_time', value: topic.lectures_time %></em><br/>
+    <em><%= t '.labs_time', value: topic.labs_time %></em><br/>
+
+    <em><%= t '.calculate_time', value: topic.calculate_time %></em>
+    <em><%= t topic.calculate_time ? 'yes' : 'no' %></em>
+
+    <div class="pull-right controls clearfix">
+      <%= render 'application/movers', topic_movers_options(topic) %>
+      <%= render 'application/menu', topic_menu_options(topic) %>
     </div>
   </div>
-</div>  
+</div>
