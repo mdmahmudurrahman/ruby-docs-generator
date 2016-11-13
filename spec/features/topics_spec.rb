@@ -69,7 +69,7 @@ feature Topic do
 
           # check topic labs and lectures time
           %i(labs_time lectures_time).each do |field|
-            expect(topic.send field).to eq 6
+            expect(topic.send(field)).to eq 6
           end
         end
 
@@ -92,7 +92,7 @@ feature Topic do
 
           # check topic labs and lectures time
           %i(labs_time lectures_time).each do |field|
-            expect(topic.send field).to eq 2
+            expect(topic.send(field)).to eq 2
           end
         end
       end
@@ -136,7 +136,7 @@ feature Topic do
 
           # check topic labs and lectures time
           %i(labs_time lectures_time).each do |field|
-            expect(new_topic.send field).to eq \
+            expect(new_topic.send(field)).to eq \
               sub_module.send(field) / 2
           end
         end
@@ -160,7 +160,7 @@ feature Topic do
 
           # check topic labs and lectures time
           %i(labs_time lectures_time).each do |field|
-            expect(new_topic.send field).to eq topic.send(field)
+            expect(new_topic.send(field)).to eq topic.send(field)
           end
         end
 

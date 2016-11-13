@@ -3,6 +3,7 @@ class DocumentDecorator < Draper::Decorator
   delegate_all
 
   decorates_association :main_modules
+  decorates_association :scientists
 
   def total_labs_time
     main_modules.inject(0) do |count, main_module|

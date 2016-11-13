@@ -13,8 +13,16 @@ class ScientistsController < ApplicationController
   end
 
   def create
-    @scientist = Scientist.create scientist_params_with_document
-    return render :new unless @scientist.persisted?
+    # save new scientist to database
+    saved = @scientist.update document: @document
+
+    # if entity isn't saved successfully
+    # then render form with errors
+    return render :new unless saved
+
+    # if entity is saved successfully
+    # then redirect to document page and
+    # show alert about successfully creation
     redirect_to @document, alert: t('.alert')
   end
 
@@ -38,10 +46,8 @@ class ScientistsController < ApplicationController
   end
 
   def scientist_params
-    params.require(:scientist).permit %i(name position)
-  end
-
-  def scientist_params_with_document
-    scientist_params.merge document: @document
+    params.require(:scientist).permit %i(
+      name position examiner practician
+    )
   end
 end

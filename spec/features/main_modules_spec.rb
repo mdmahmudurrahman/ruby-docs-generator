@@ -141,7 +141,6 @@ feature MainModule do
         scenario "#move #{type}", focus: true, js: true do
           position = main_module.position
 
-          sleep 3
           text = I18n.t "move-#{type}"
           first('a', text: text).click
 

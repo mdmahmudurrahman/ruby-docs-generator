@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 20161112200058) do
   create_table "scientists", force: :cascade do |t|
     t.string   "name"
     t.string   "position"
+    t.boolean  "examiner"
+    t.boolean  "practician"
     t.integer  "document_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
