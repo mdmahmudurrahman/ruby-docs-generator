@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-body truncate-text-container">
+    <div class="text clearfix">
+      <%= practice.name %>
+
+      <em class="text-muted">
+        <%= practice.time_count %>
+      </em>
+    </div>
+
+    <div class="controls clearfix">
+      <%= render 'application/movers', practice_movers_options(practice) %>
+      <%= render 'application/menu', practice_menu_options(practice) %>
+    </div>
+  </div>
+</div>

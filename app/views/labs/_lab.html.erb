@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-body truncate-text-container">
+    <div class="text clearfix">
+      <%= lab.name %>
+
+      <em class="text-muted">
+        <%= lab.time_count %>
+      </em>
+    </div>
+
+    <div class="controls clearfix">
+      <%= render 'application/movers', lab_movers_options(lab) %>
+      <%= render 'application/menu', lab_menu_options(lab) %>
+    </div>
+  </div>
+</div>

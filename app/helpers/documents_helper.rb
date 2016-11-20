@@ -23,4 +23,24 @@ module DocumentsHelper
     { delete_link: scientist_path(scientist),
       update_link: edit_scientist_path(scientist) }
   end
+
+  def lab_menu_options(lab)
+    { delete_link: lab_path(lab),
+      update_link: edit_lab_path(lab) }
+  end
+
+  def lab_movers_options(lab)
+    { move_higher_url: lab_move_higher_path(lab),
+      move_lower_url: lab_move_lower_path(lab) }
+  end
+
+  def practice_menu_options(practice)
+    { delete_link: practice_path(practice),
+      update_link: edit_practice_path(practice) }
+  end
+
+  def practice_movers_options(practice)
+    { move_higher_url: practice_move_higher_path(practice),
+      move_lower_url: practice_move_lower_path(practice) }
+  end
 end

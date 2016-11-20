@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading text-center">
+    <h4><%= t '.labs' %></h4>
+  </div>
+
+  <div class="panel-body panel-body-container">
+    <% if document.labs.empty? %>
+        <div class="text-center">
+          <%= t '.no-labs' %>
+        </div>
+    <% else %>
+        <%= render document.labs %>
+    <% end %>
+  </div>
+
+  <div class="panel-footer">
+    <%= link_to t('.add'), new_document_lab_path(document) %>
+  </div>
+</div>

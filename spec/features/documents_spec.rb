@@ -142,9 +142,7 @@ feature Document do
 
         find('.update-link').click
 
-        %w(edit.title form.rating_system_description).each do |identifier|
-          expect(page).to have_content I18n.t "documents.#{identifier}"
-        end
+        expect(page).to have_content I18n.t 'documents.edit.title'
 
         find('a', text: I18n.t('cancel')).click
         text = I18n.t 'documents.update.alert'
@@ -182,9 +180,9 @@ feature Document do
     faculty_name
 
     labs_time
-    groups_codes
     credits_count
     lectures_time
+    groups_codes
     cathedra_name
     semester_number
     year_of_studying

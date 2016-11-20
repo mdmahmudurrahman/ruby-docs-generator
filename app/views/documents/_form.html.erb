@@ -1,89 +1,107 @@
 <%= simple_form_for document, form_options do |form| %>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4><%= t '.title_page' %></h4>
-        </div>
+    <div id="tabs">
+      <ul class="nav nav-pills tabs">
+        <li><a href="#tabs-1"><%= t '.title_and_discipline' %></a></li>
+        <li><a href="#tabs-2"><%= t '.structure_and_protocols' %></a></li>
+        <li><a href="#tabs-3"><%= t '.modules_and_scientists' %></a></li>
+        <li><a href="#tabs-4"><%= t '.labs_and_practice' %></a></li>
+      </ul>
 
-        <div class="panel-body">
-          <%= form.input :discipline_code %>
-          <%= form.input :discipline_name %>
-          <%= form.input :field_of_study_code %>
-          <%= form.input :field_of_study_name %>
-          <%= form.input :speciality_name %>
-          <%= form.input :specialization_name %>
-          <%= form.input :faculty_name %>
-        </div>
-      </div>
-    </div>
+      <div id="tabs-1" class="col-md-12">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h4><%= t '.title_page' %></h4>
+            </div>
 
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4><%= t '.study_description' %></h4>
-        </div>
-
-        <div class="panel-body">
-          <%= form.input :credits_count, number_input_options %>
-          <%= form.input :year_of_studying, number_input_options %>
-          <%= form.input :semester_number, number_input_options %>
-          <%= form.input :lectures_time, number_input_options %>
-          <%= form.input :labs_time, number_input_options %>
-          <%= form.input :self_hours_count, number_input_options %>
-          <%= form.input :total_hours_count, number_input_options %>
-
-          <%= form.input :type_of_control, collection: %w(залік екзамен), prompt: :translate %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-12">
-      <div class="delimiter"></div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4><%= t '.rating_system_description' %></h4>
-        </div>
-
-        <div class="panel-body">
-          <%= form.input :cathedra_name %>
-          <%= form.input :groups_codes %>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4><%= t '.protocols' %></h4>
-        </div>
-
-        <div class="panel-body">
-          <% %i(department commission academic_council).each do |field| %>
-            <p><%= t ".program_approved_by_#{field}" %></p>
-
-            <%= form.input :"head_of_#{field}" %>
-            <%= form.input :"program_#{field}_approved_date" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <% if document.persisted? %>
-        <div class="col-md-12">
-          <div class="delimiter"></div>
+            <div class="panel-body">
+              <%= form.input :discipline_code %>
+              <%= form.input :discipline_name %>
+              <%= form.input :field_of_study_code %>
+              <%= form.input :field_of_study_name %>
+              <%= form.input :speciality_name %>
+              <%= form.input :specialization_name %>
+              <%= form.input :faculty_name %>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-6">
-          <%= render 'main_modules/list', document: document %>
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h4><%= t '.study_description' %></h4>
+            </div>
+
+            <div class="panel-body">
+              <%= form.input :credits_count, number_input_options %>
+              <%= form.input :year_of_studying, number_input_options %>
+              <%= form.input :semester_number, number_input_options %>
+              <%= form.input :lectures_time, number_input_options %>
+              <%= form.input :labs_time, number_input_options %>
+              <%= form.input :self_hours_count, number_input_options %>
+              <%= form.input :total_hours_count, number_input_options %>
+
+              <%= form.input :type_of_control, collection: %w(залік екзамен), prompt: :translate %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tabs-2" class="col-md-12">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h4><%= t '.rating_system_description' %></h4>
+            </div>
+
+            <div class="panel-body">
+              <%= form.input :cathedra_name %>
+              <%= form.input :groups_codes %>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-6">
-          <%= render 'scientists/list', document: document %>
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h4><%= t '.protocols' %></h4>
+            </div>
+
+            <div class="panel-body">
+              <% %i(department commission academic_council).each do |field| %>
+                  <p><%= t ".program_approved_by_#{field}" %></p>
+
+                  <%= form.input :"head_of_#{field}" %>
+                  <%= form.input :"program_#{field}_approved_date" %>
+              <% end %>
+            </div>
+          </div>
         </div>
-    <% end %>
+      </div>
+
+      <% if document.persisted? %>
+        <div id="tabs-3" class="col-md-12">
+          <div class="col-md-6">
+            <%= render 'main_modules/list', document: document %>
+          </div>
+
+          <div class="col-md-6">
+            <%= render 'scientists/list', document: document %>
+          </div>
+        </div>
+
+        <div id="tabs-4" class="col-md-12">
+          <div class="col-md-6">
+            <%= render 'labs/list', document: document %>
+          </div>
+
+          <div class="col-md-6">
+            <%= render 'practices/list', document: document %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
 
     <div class="col-md-12">
       <div class="form-controls">

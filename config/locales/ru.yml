@@ -42,6 +42,10 @@ ru:
       program_approved_by_department: "Рабочая программа утверждена на заседании кафедры ..."
       program_approved_by_commission: "Одобрено научно-методической комиссией ..."
       program_approved_by_academic_council: "Одобрено Ученым советом факультета ..."
+      title_and_discipline: 'Титульная и дисциплина'
+      structure_and_protocols: 'Структура и протоколы'
+      modules_and_scientists: 'Модули и преподователи'
+      labs_and_practice: 'Лабораторные и практика'
 
     index:
       documents: 'Документы'
@@ -88,6 +92,48 @@ ru:
       add: 'Добавить преподавателя'
       no-scientists: 'Нет преподавателй.'
       practician: 'Ведет лаб. и прак. занятия'
+
+  labs:
+    new:
+      title: 'Добавить лабораторную'
+
+    edit:
+      title: 'Изменить лабораторную'
+
+    create:
+      alert: 'Лабораторная успешно добавлена!'
+
+    update:
+      alert: 'Лабораторная успешно изменена!'
+
+    destroy:
+      alert: 'Лабораторная успешно удалена!'
+
+    list:
+      labs: 'Лабораторная'
+      add: 'Добавить лабораторную'
+      no-labs: 'Нет лабораторных.'
+
+  practices:
+    new:
+      title: 'Добавить практику'
+
+    edit:
+      title: 'Изменить практику'
+
+    create:
+      alert: 'Практика успешно добавлена!'
+
+    update:
+      alert: 'Практика успешно изменена!'
+
+    destroy:
+      alert: 'Практика успешно удалена!'
+
+    list:
+      practices: 'Практика'
+      add: 'Добавить практику'
+      no-practices: 'Нет практик.'
 
   main_modules:
     new:
@@ -219,6 +265,14 @@ ru:
         examiner: 'Преподаватель-экзаменатор'
         practician: 'Ведет лабораторные и практические занятия'
 
+      lab:
+        name: 'Нименование'
+        time_count: 'Количество часов'
+
+      practice:
+        name: 'Нименование'
+        time_count: 'Количество часов'
+        
       main_module:
         name: 'Наименование'
         total_time: 'Количество часов'

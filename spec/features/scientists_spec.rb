@@ -6,7 +6,7 @@ feature Scientist do
 
     scenario '#new' do
       visit new_document_scientist_path document, scientist
-      expect(page).not_to have_content I18n.t 'main_modules.new.title'
+      expect(page).not_to have_content I18n.t 'scientists.new.title'
 
       text = I18n.t 'devise.failure.unauthenticated'
       expect(page).to have_content text
@@ -14,7 +14,7 @@ feature Scientist do
 
     scenario '#edit' do
       visit edit_scientist_path scientist
-      expect(page).not_to have_content I18n.t 'main_modules.edit.title'
+      expect(page).not_to have_content I18n.t 'scientists.edit.title'
       expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
   end
@@ -36,7 +36,7 @@ feature Scientist do
       end
     end
 
-    context '#with one module' do
+    context '#with one scientist' do
       let(:document) { scientist.document }
       let(:scientist) { create :scientist }
 
@@ -75,6 +75,7 @@ feature Scientist do
 
       context '#update', js: true do
         background do
+          find_link(I18n.t('documents.form.modules_and_scientists')).click
           find('.glyphicon-option-vertical').hover
           find('.update-link').click
 
@@ -106,6 +107,7 @@ feature Scientist do
 
       context '#delete', js: true do
         background do
+          find_link(I18n.t('documents.form.modules_and_scientists')).click
           find('.glyphicon-option-vertical').hover
           find('.delete-link').click
         end
@@ -123,6 +125,10 @@ feature Scientist do
       let(:scientist) { scientists.first }
       let(:scientists) { document.scientists }
       let(:document) { create :document_with_scientists }
+
+      background do
+        find_link(I18n.t('documents.form.modules_and_scientists')).click
+      end
 
       scenario '#index' do
         scientists.map(&:name).each do |name|

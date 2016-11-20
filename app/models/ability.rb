@@ -14,6 +14,8 @@ class Ability
 
     can :manage, Topic, sub_module_ability(user)
     can :manage, SubModule, main_module_ability(user)
+    can :manage, Lab, document_ability(user)
+    can :manage, Practice, document_ability(user)
   end
 
   def document_ability(user)

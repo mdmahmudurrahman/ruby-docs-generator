@@ -1,24 +1,20 @@
 # frozen_string_literal: true
-feature MainModule do
+feature Lab do
   context '#unauthorized' do
-    let(:document) { main_module.document }
-    let(:main_module) { create :main_module }
-
-    scenario '#show' do
-      visit main_module_path main_module
-      expect(page).not_to have_content main_module.name
-      expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
-    end
+    let(:document) { lab.document }
+    let(:lab) { create :lab }
 
     scenario '#new' do
-      visit new_document_main_module_path document, main_module
-      expect(page).not_to have_content I18n.t 'main_modules.new.title'
-      expect(page).to have_content I18n.t 'devise.failure.unauthenticated'
+      visit new_document_lab_path document, lab
+      expect(page).not_to have_content I18n.t 'labs.new.title'
+
+      text = I18n.t 'devise.failure.unauthenticated'
+      expect(page).to have_content text
     end
 
     scenario '#edit' do
-      visit edit_main_module_path main_module
-      expect(page).not_to have_content I18n.t 'main_modules.edit.title'
+      visit edit_lab_path lab
+      expect(page).not_to have_content I18n.t 'labs.edit.title'
       expect(page).to have_content I18n.t 'devise.sessions.new.sign_in'
     end
   end
@@ -33,31 +29,31 @@ feature MainModule do
       let(:document) { create :document }
 
       scenario '#index' do
-        %w(modules no-modules add).each do |string|
-          text = I18n.t "main_modules.list.#{string}"
+        %w(labs no-labs add).each do |string|
+          text = I18n.t "labs.list.#{string}"
           expect(page).to have_content text
         end
       end
     end
 
-    context '#with one module' do
-      let(:document) { main_module.document }
-      let(:main_module) { create :main_module }
+    context '#with one lab' do
+      let(:document) { lab.document }
+      let(:lab) { create :lab }
 
       context '#create' do
         background do
-          click_on I18n.t 'main_modules.list.add'
+          click_on I18n.t 'labs.list.add'
 
-          %w(main_modules.new.title cancel).each do |string|
+          %w(labs.new.title cancel).each do |string|
             expect(page).to have_content I18n.t string
           end
         end
 
         scenario '#with valid inputs' do
-          fill_in_form main_module
+          fill_in_form lab
           click_on I18n.t 'helpers.submit.create'
 
-          %w(main_modules.create.alert
+          %w(labs.create.alert
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -66,10 +62,10 @@ feature MainModule do
         scenario '#with invalid inputs' do
           click_on I18n.t 'helpers.submit.create'
 
-          text = I18n.t 'main_modules.new.title'
+          text = I18n.t 'labs.new.title'
           expect(page).to have_content text
 
-          %w(main_modules.create.alert
+          %w(labs.create.alert
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -79,30 +75,30 @@ feature MainModule do
 
       context '#update', js: true do
         background do
-          find_link(I18n.t('documents.form.modules_and_scientists')).click
+          find_link(I18n.t('documents.form.labs_and_practice')).click
           find('.glyphicon-option-vertical').hover
           find('.update-link').click
 
-          %w(main_modules.edit.title cancel).each do |string|
+          %w(labs.edit.title cancel).each do |string|
             expect(page).to have_content I18n.t string
           end
         end
 
         scenario '#with valid inputs' do
-          fill_in_form main_module
+          fill_in_form lab
           click_button I18n.t 'helpers.submit.update'
 
-          %w(main_modules.update.alert
+          %w(labs.update.alert
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
         end
 
         scenario '#with invalid inputs' do
-          fill_in_form MainModule.new
+          fill_in_form Lab.new
           click_button I18n.t 'helpers.submit.update'
 
-          %w(main_modules.update.alert
+          %w(labs.update.alert
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -111,13 +107,13 @@ feature MainModule do
 
       context '#delete', js: true do
         background do
-          find_link(I18n.t('documents.form.modules_and_scientists')).click
+          find_link(I18n.t('documents.form.labs_and_practice')).click
           find('.glyphicon-option-vertical').hover
           find('.delete-link').click
         end
 
         scenario '#delete' do
-          %w(main_modules.destroy.alert
+          %w(labs.destroy.alert
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -125,32 +121,32 @@ feature MainModule do
       end
     end
 
-    context '#with modules' do
-      let(:main_module) { main_modules.first }
-      let(:main_modules) { document.main_modules }
-      let(:document) { create :document_with_main_modules }
+    context '#with labs' do
+      let(:lab) { labs.first }
+      let(:labs) { document.labs }
+      let(:document) { create :document_with_labs }
 
       background do
-        find_link(I18n.t('documents.form.modules_and_scientists')).click
+        find_link(I18n.t('documents.form.labs_and_practice')).click
       end
 
       scenario '#index' do
-        main_modules.map(&:name).each do |name|
+        labs.map(&:name).each do |name|
           expect(page).to have_content name
         end
 
-        text = I18n.t 'main_modules.list.no-modules'
+        text = I18n.t 'labs.list.no-labs'
         expect(page).not_to have_content text
       end
 
       %w(lower higher).each do |type|
         scenario "#move #{type}", js: true do
-          position = main_module.position
+          position = lab.position
 
           text = I18n.t "move-#{type}"
           first('a', text: text).click
 
-          new_position = main_module.reload.position
+          new_position = lab.reload.position
           expect(new_position).not_to eq position
         end
       end
@@ -159,10 +155,10 @@ feature MainModule do
 
   private
 
-  def fill_in_form(main_module)
-    %i(name total_time).each do |field|
-      selector = "main_module[#{field}]"
-      value = main_module.send field
+  def fill_in_form(lab)
+    %i(name time_count).each do |field|
+      selector = "lab[#{field}]"
+      value = lab.send field
       fill_in selector, with: value
     end
   end

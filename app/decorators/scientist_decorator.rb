@@ -4,6 +4,6 @@ class ScientistDecorator < Draper::Decorator
 
   def positions
     %i(examiner practician).select { |field| scientist.send field }
-      .map { |field| I18n.t "scientists.list.#{field}" }.join ', '
+                           .map { |field| I18n.t "scientists.list.#{field}" }.join ', '
   end
 end

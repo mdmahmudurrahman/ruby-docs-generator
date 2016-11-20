@@ -7,11 +7,13 @@
 //= require docxtemplater
 //= require jszip-utils
 //= require file-saver
+//= require jquery-ui
 
 //= require_tree .
 //= require_self
 
 $(function () {
+  prepareTabs();
   prepareMoveButtons();
   prepareTimeCheckbox();
 
@@ -60,11 +62,15 @@ function prepareTimeCheckbox() {
   // block with inputs for entering time for labs and lectures
   const fields = $('.labs-and-lectures-time-inputs');
 
-  const callback = function() {
+  const callback = function () {
     fields.slideToggle();
   };
 
   const checkbox = $('input[type=checkbox]');
   if (checkbox.is(':checked')) callback();
   checkbox.change(callback);
+}
+
+function prepareTabs() {
+  $("#tabs").tabs();
 }

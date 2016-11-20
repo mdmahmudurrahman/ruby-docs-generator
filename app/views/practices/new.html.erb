@@ -1,0 +1,9 @@
+<div class="col-md-4 col-md-offset-4">
+  <h3 class="page-header text-center">
+    <%= t '.title' %>
+  </h3>
+
+  <%= simple_form_for [@document, @practice] do |form| %>
+    <%= render 'form', document: @document, form: form %>
+  <% end %>
+</div>
