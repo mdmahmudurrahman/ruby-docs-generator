@@ -13,19 +13,15 @@ Rails.application.routes.draw do
     get 'data', to: 'documents#data'
     get 'generate', to: 'documents#generate'
 
-    resources :scientists, only: %i(new create)
-
     resources :labs, only: %i(new create)
-
     resources :practices, only: %i(new create)
+    resources :scientists, only: %i(new create)
 
     resources :main_modules, path: 'main-modules', only: %i(new create)
   end
 
   resources :scientists, except: %i(index show new create)
-
   resources :labs, expect: %i(index show new create), concerns: :movable
-
   resources :practices, expect: %i(index show new create), concerns: :movable
 
   resources :main_modules, path: 'main-modules', except: %i(new create), concerns: :movable
