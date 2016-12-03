@@ -6,4 +6,12 @@ RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  # show 10 slowest specs
+  config.profile_examples = 5
+
+  # run specs in random order
+  config.order = :random
+
+  Kernel.srand config.seed
 end
