@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-feature Practice, focus: true do
+feature Practice do
   context '#unauthorized' do
     let(:document) { practice.document }
     let(:practice) { create :practice }

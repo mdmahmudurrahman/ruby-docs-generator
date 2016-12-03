@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-feature Topic do
+feature Topic, focus: true do
   context '#unauthorized' do
     let(:topic) { create :topic }
     let(:sub_module) { topic.sub_module }

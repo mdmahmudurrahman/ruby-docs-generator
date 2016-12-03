@@ -1,0 +1,9 @@
+ru:
+  flash:
+    topics:
+      create:
+        notice: 'Тема успешно добавлена!'
+      update:
+        notice: 'Тема успешно изменена!'
+      destroy:
+        notice: 'Тема успешно удалена!'
