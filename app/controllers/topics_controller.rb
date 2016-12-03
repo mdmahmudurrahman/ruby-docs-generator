@@ -17,23 +17,23 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.create topic_params_with_sub_module
-    return render :new unless @topic.persisted?
     @sub_module.calculate_topics_time
-    flash[:alert] = t '.alert'
-    redirect_to @sub_module
+
+    respond_with @topic, location: -> { @sub_module }
   end
 
   def update
-    return render :edit unless @topic.update topic_params
+    @topic.update topic_params
     @sub_module.calculate_topics_time
-    flash[:alert] = t '.alert'
-    redirect_to @sub_module
+
+    respond_with @topic, location: -> { @sub_module }
   end
 
   def destroy
-    destroyed = @topic.destroy.destroyed?
-    @sub_module.calculate_topics_time if destroyed
-    redirect_to @sub_module, alert: t('topics.destroy.alert')
+    @topic.destroy
+    @sub_module.calculate_topics_time
+
+    respond_with @topic, location: -> { @sub_module }
   end
 
   private

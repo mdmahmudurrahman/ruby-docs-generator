@@ -187,19 +187,8 @@ ru:
   topics:
     new:
       title: 'Добавить тему'
-
     edit:
       title: 'Изменить тему'
-
-    create:
-      alert: 'Тема успешно добавлена!'
-
-    update:
-      alert: 'Тема успешно изменена!'
-
-    destroy:
-      alert: 'Тема успешно удалена!'
-
     decorator:
       prefix: 'Тема %{value}. '
 
@@ -214,6 +203,8 @@ ru:
       calculate_time: 'Часы считаются автоматически:'
 
   activerecord:
+    models:
+      topic: 'Тема'
     errors:
       messages:
         blank: 'Поле должно быть заполнено!'
