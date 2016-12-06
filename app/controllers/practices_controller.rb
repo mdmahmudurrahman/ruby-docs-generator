@@ -15,23 +15,18 @@ class PracticesController < ApplicationController
   end
 
   def create
-    saved = @practice.update document: @document
-    return render :new unless saved
-
-    redirect_to @document, alert: t('.alert')
+    @practice.update document: @document
+    respond_with @practice, location: -> { @document }
   end
 
   def update
-    success = @practice.update practice_params
-    return render :edit unless success
-    flash[:alert] = t '.alert'
-    redirect_to @document
+    @practice.update practice_params
+    respond_with @practice, location: -> { @document }
   end
 
   def destroy
-    success = @practice.destroy.destroyed?
-    flash[:alert] = t '.alert' if success
-    redirect_to @document
+    @practice.destroy.destroyed?
+    respond_with @practice, location: -> { @document }
   end
 
   private

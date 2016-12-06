@@ -15,23 +15,18 @@ class LabsController < ApplicationController
   end
 
   def create
-    saved = @lab.update document: @document
-    return render :new unless saved
-
-    redirect_to @document, alert: t('.alert')
+    @lab.update document: @document
+    respond_with @lab, location: -> { @document }
   end
 
   def update
-    success = @lab.update lab_params
-    return render :edit unless success
-    flash[:alert] = t '.alert'
-    redirect_to @document
+    @lab.update lab_params
+    respond_with @lab, location: -> { @document }
   end
 
   def destroy
-    success = @lab.destroy.destroyed?
-    flash[:alert] = t '.alert' if success
-    redirect_to @document
+    @lab.destroy.destroyed?
+    respond_with @lab, location: -> { @document }
   end
 
   private

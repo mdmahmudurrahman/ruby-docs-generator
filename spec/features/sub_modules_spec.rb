@@ -57,7 +57,7 @@ feature SubModule do
           fill_in_form sub_module
           click_on I18n.t 'helpers.submit.create'
 
-          %w(sub_modules.create.alert
+          %w(flash.sub_modules.create.notice
              sub_modules.list.add).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -70,7 +70,7 @@ feature SubModule do
             expect(page).to have_content I18n.t string
           end
 
-          text = I18n.t 'sub_modules.create.alert'
+          text = I18n.t 'flash.sub_modules.create.notice'
           expect(page).not_to have_content text
         end
       end
@@ -89,7 +89,7 @@ feature SubModule do
           fill_in_form sub_module
           click_button I18n.t 'helpers.submit.update'
 
-          %w(sub_modules.update.alert
+          %w(flash.sub_modules.update.notice
              sub_modules.list.add).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -103,7 +103,7 @@ feature SubModule do
             expect(page).to have_content I18n.t string
           end
 
-          text = I18n.t 'sub_modules.update.alert'
+          text = I18n.t 'flash.sub_modules.update.notice'
           expect(page).not_to have_content text
         end
       end
@@ -115,7 +115,7 @@ feature SubModule do
         end
 
         scenario '#delete' do
-          text = I18n.t 'sub_modules.destroy.alert'
+          text = I18n.t 'flash.sub_modules.destroy.notice'
           expect(page).to have_content text
 
           expect(page).to have_content main_module.name

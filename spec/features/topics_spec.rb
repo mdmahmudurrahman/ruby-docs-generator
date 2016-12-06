@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-feature Topic, focus: true do
+feature Topic do
   context '#unauthorized' do
     let(:topic) { create :topic }
     let(:sub_module) { topic.sub_module }
@@ -21,7 +21,7 @@ feature Topic, focus: true do
     let(:user) { sub_module.main_module.document.user }
     background { sign_in user; visit sub_module_path sub_module }
 
-    context '#without sub modules' do
+    context '#without topics' do
       let(:topic) { build :topic, labs_time: 2, lectures_time: 2 }
       let(:sub_module) { create :sub_module, labs_time: 6, lectures_time: 6 }
 
@@ -60,9 +60,8 @@ feature Topic, focus: true do
           click_on I18n.t 'helpers.submit.create'
 
           # check alert and add link
-          %w(create.alert list.add).each do |string|
-            text = I18n.t "topics.#{string}"
-            expect(page).to have_content text
+          %w(topics.list.add flash.topics.create.notice).each do |text|
+            expect(page).to have_content I18n.t text
           end
 
           topic = sub_module.topics.first
@@ -83,9 +82,8 @@ feature Topic, focus: true do
           click_on I18n.t 'helpers.submit.create'
 
           # check alert and add link
-          %w(create.alert list.add).each do |string|
-            text = I18n.t "topics.#{string}"
-            expect(page).to have_content text
+          %w(topics.list.add flash.topics.create.notice).each do |text|
+            expect(page).to have_content I18n.t text
           end
 
           topic = sub_module.topics.first
@@ -127,9 +125,8 @@ feature Topic, focus: true do
           click_on I18n.t 'helpers.submit.create'
 
           # check alert and add link
-          %w(create.alert list.add).each do |string|
-            text = I18n.t "topics.#{string}"
-            expect(page).to have_content text
+          %w(topics.list.add flash.topics.create.notice).each do |text|
+            expect(page).to have_content I18n.t text
           end
 
           new_topic = sub_module.topics.last
@@ -151,9 +148,8 @@ feature Topic, focus: true do
           click_on I18n.t 'helpers.submit.create'
 
           # check alert and add link
-          %w(create.alert list.add).each do |string|
-            text = I18n.t "topics.#{string}"
-            expect(page).to have_content text
+          %w(topics.list.add flash.topics.create.notice).each do |text|
+            expect(page).to have_content I18n.t text
           end
 
           new_topic = sub_module.topics.last
@@ -171,7 +167,7 @@ feature Topic, focus: true do
             expect(page).to have_content I18n.t string
           end
 
-          text = I18n.t 'topics.create.alert'
+          text = I18n.t 'flash.topics.create.notice'
           expect(page).not_to have_content text
         end
       end
@@ -192,7 +188,7 @@ feature Topic, focus: true do
           fill_in_topic_form topic
           click_button I18n.t 'helpers.submit.update'
 
-          %w(topics.update.alert
+          %w(flash.topics.update.notice
              topics.list.add).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -206,7 +202,7 @@ feature Topic, focus: true do
             expect(page).to have_content I18n.t string
           end
 
-          text = I18n.t 'topics.update.alert'
+          text = I18n.t 'flash.topics.update.notice'
           expect(page).not_to have_content text
         end
       end
@@ -218,7 +214,7 @@ feature Topic, focus: true do
         end
 
         scenario '#delete' do
-          expect(page).to have_content I18n.t 'topics.destroy.alert'
+          expect(page).to have_content I18n.t 'flash.topics.destroy.notice'
           expect(page).to have_content sub_module.name
         end
       end
@@ -234,7 +230,7 @@ feature Topic, focus: true do
           expect(page).to have_content name
         end
 
-        text = I18n.t 'sub_modules.list.no-modules'
+        text = I18n.t 'topics.list.no-modules'
         expect(page).not_to have_content text
       end
 

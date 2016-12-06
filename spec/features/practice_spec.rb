@@ -53,7 +53,7 @@ feature Practice do
           fill_in_form practice
           click_on I18n.t 'helpers.submit.create'
 
-          %w(practices.create.alert
+          %w(flash.practices.create.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -65,7 +65,7 @@ feature Practice do
           text = I18n.t 'practices.new.title'
           expect(page).to have_content text
 
-          %w(practices.create.alert
+          %w(flash.practices.create.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -88,7 +88,7 @@ feature Practice do
           fill_in_form practice
           click_button I18n.t 'helpers.submit.update'
 
-          %w(practices.update.alert
+          %w(flash.practices.update.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -98,7 +98,7 @@ feature Practice do
           fill_in_form Practice.new
           click_button I18n.t 'helpers.submit.update'
 
-          %w(practices.update.alert
+          %w(flash.practices.update.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -113,7 +113,7 @@ feature Practice do
         end
 
         scenario '#delete' do
-          %w(practices.destroy.alert
+          %w(flash.practices.destroy.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end

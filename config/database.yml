@@ -4,14 +4,14 @@ default: &default
 
 development:
   <<: *default
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: postgres
+  password: 123456
   database: ruby-docs-generator-dev
 
 test:
   <<: *default
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: postgres
+  password: 123456
   database: ruby-docs-generator-test
 
 production:
