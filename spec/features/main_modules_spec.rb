@@ -57,7 +57,7 @@ feature MainModule do
           fill_in_form main_module
           click_on I18n.t 'helpers.submit.create'
 
-          %w(main_modules.create.alert
+          %w(flash.main_modules.create.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -69,7 +69,7 @@ feature MainModule do
           text = I18n.t 'main_modules.new.title'
           expect(page).to have_content text
 
-          %w(main_modules.create.alert
+          %w(flash.main_modules.create.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -92,7 +92,7 @@ feature MainModule do
           fill_in_form main_module
           click_button I18n.t 'helpers.submit.update'
 
-          %w(main_modules.update.alert
+          %w(flash.main_modules.update.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -102,7 +102,7 @@ feature MainModule do
           fill_in_form MainModule.new
           click_button I18n.t 'helpers.submit.update'
 
-          %w(main_modules.update.alert
+          %w(flash.main_modules.update.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -117,7 +117,7 @@ feature MainModule do
         end
 
         scenario '#delete' do
-          %w(main_modules.destroy.alert
+          %w(flash.main_modules.destroy.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end

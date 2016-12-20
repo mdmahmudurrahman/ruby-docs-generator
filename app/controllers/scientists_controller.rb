@@ -14,29 +14,24 @@ class ScientistsController < ApplicationController
 
   def create
     # save new scientist to database
-    saved = @scientist.update document: @document
+    @scientist.update document: @document
 
     # if entity isn't saved successfully
     # then render form with errors
-    return render :new unless saved
-
     # if entity is saved successfully
     # then redirect to document page and
     # show alert about successfully creation
-    redirect_to @document, alert: t('.alert')
+    respond_with @scientist, location: -> { @document }
   end
 
   def update
-    success = @scientist.update scientist_params
-    return render :edit unless success
-    flash[:alert] = t '.alert'
-    redirect_to @document
+    @scientist.update scientist_params
+    respond_with @scientist, location: -> { @document }
   end
 
   def destroy
-    success = @scientist.destroy.destroyed?
-    flash[:alert] = t '.alert' if success
-    redirect_to @document
+    @scientist.destroy.destroyed?
+    respond_with @scientist, location: -> { @document }
   end
 
   private

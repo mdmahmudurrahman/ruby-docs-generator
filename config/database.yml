@@ -8,6 +8,7 @@ development:
   password: <%= ENV['DATABASE_PASSWORD'] %>
   database: ruby-docs-generator-dev
 
+
 test:
   <<: *default
   username: <%= ENV['DATABASE_USERNAME'] %>

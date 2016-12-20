@@ -53,7 +53,7 @@ feature Lab do
           fill_in_form lab
           click_on I18n.t 'helpers.submit.create'
 
-          %w(labs.create.alert
+          %w(flash.labs.create.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -65,7 +65,7 @@ feature Lab do
           text = I18n.t 'labs.new.title'
           expect(page).to have_content text
 
-          %w(labs.create.alert
+          %w(flash.labs.create.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -88,7 +88,7 @@ feature Lab do
           fill_in_form lab
           click_button I18n.t 'helpers.submit.update'
 
-          %w(labs.update.alert
+          %w(flash.labs.update.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -98,7 +98,7 @@ feature Lab do
           fill_in_form Lab.new
           click_button I18n.t 'helpers.submit.update'
 
-          %w(labs.update.alert
+          %w(flash.labs.update.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -113,7 +113,7 @@ feature Lab do
         end
 
         scenario '#delete' do
-          %w(labs.destroy.alert
+          %w(flash.labs.destroy.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end

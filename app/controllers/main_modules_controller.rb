@@ -19,21 +19,17 @@ class MainModulesController < ApplicationController
 
   def create
     @main_module = MainModule.create main_module_params_with_document
-    return render :new unless @main_module.persisted?
-    redirect_to @document, alert: t('.alert')
+    respond_with @main_module, location: -> { @document }
   end
 
   def update
     success = @main_module.update main_module_params
-    return render :edit unless success
-    flash[:alert] = t '.alert'
-    redirect_to @document
+    respond_with @main_module, location: -> { @document }
   end
 
   def destroy
     success = @main_module.destroy.destroyed?
-    flash[:alert] = t '.alert' if success
-    redirect_to @document
+    respond_with @main_module, location: -> { @document }
   end
 
   private

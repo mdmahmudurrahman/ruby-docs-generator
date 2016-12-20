@@ -26,21 +26,17 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.create document_params_with_user
-    return render :new unless @document.persisted?
-    redirect_to root_path, alert: t('.alert')
+    respond_with @document, location: -> { root_path }
   end
 
   def update
-    success = @document.update document_params
-    return render :edit unless success
-    flash[:alert] = t '.alert'
-    redirect_to root_path
+    @document.update document_params
+    respond_with @document, location: -> { root_path }
   end
 
   def destroy
-    success = @document.destroy.destroyed?
-    flash[:alert] = t '.alert' if success
-    redirect_to root_path
+    @document.destroy.destroyed?
+    respond_with @document, location: -> { root_path }
   end
 
   def data

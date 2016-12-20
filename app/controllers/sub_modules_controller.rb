@@ -19,20 +19,17 @@ class SubModulesController < ApplicationController
 
   def create
     @sub_module = SubModule.create sub_module_params_with_main_module
-    return render :new unless @sub_module.persisted?
-    flash[:alert] = I18n.t 'sub_modules.create.alert'
-    redirect_to @main_module
+    respond_with @sub_module, location: -> { @main_module }
   end
 
   def update
-    return render :edit unless @sub_module.update sub_module_params
-    flash[:alert] = I18n.t 'sub_modules.update.alert'
-    redirect_to @main_module
+    @sub_module.update sub_module_params
+    respond_with @sub_module, location: -> { @main_module }
   end
 
   def destroy
-    flash[:alert] = t '.alert' if @sub_module.destroy.destroyed?
-    redirect_to @main_module
+    @sub_module.destroy.destroyed?
+    respond_with @sub_module, location: -> { @main_module }
   end
 
   private

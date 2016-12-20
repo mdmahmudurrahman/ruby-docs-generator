@@ -53,7 +53,7 @@ feature Scientist do
           fill_in_form scientist
           click_on I18n.t 'helpers.submit.create'
 
-          %w(scientists.create.alert
+          %w(flash.scientists.create.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -65,7 +65,7 @@ feature Scientist do
           text = I18n.t 'scientists.new.title'
           expect(page).to have_content text
 
-          %w(scientists.create.alert
+          %w(flash.scientists.create.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -88,7 +88,7 @@ feature Scientist do
           fill_in_form scientist
           click_button I18n.t 'helpers.submit.update'
 
-          %w(scientists.update.alert
+          %w(flash.scientists.update.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end
@@ -98,7 +98,7 @@ feature Scientist do
           fill_in_form Scientist.new
           click_button I18n.t 'helpers.submit.update'
 
-          %w(scientists.update.alert
+          %w(flash.scientists.update.notice
              documents.edit.title).each do |string|
             expect(page).not_to have_content I18n.t string
           end
@@ -113,7 +113,7 @@ feature Scientist do
         end
 
         scenario '#delete' do
-          %w(scientists.destroy.alert
+          %w(flash.scientists.destroy.notice
              documents.edit.title).each do |string|
             expect(page).to have_content I18n.t string
           end

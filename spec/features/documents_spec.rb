@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-feature Document do
+feature Document, focus: true do
   context '#unauthorized' do
     let(:document) { create :document }
 
@@ -72,7 +72,7 @@ feature Document do
         fill_document_form document
 
         click_button I18n.t 'helpers.submit.create'
-        text = I18n.t 'documents.create.alert'
+        text = I18n.t 'flash.documents.create.notice'
         expect(page).to have_content text
       end
 
@@ -84,7 +84,7 @@ feature Document do
         expect(page).to have_content text
 
         find('a', text: I18n.t('cancel')).click
-        text = I18n.t 'documents.create.alert'
+        text = I18n.t 'flash.documents.create.notice'
         expect(page).not_to have_content text
       end
     end
@@ -132,7 +132,7 @@ feature Document do
         fill_document_form document
         click_button I18n.t 'helpers.submit.update'
 
-        text = I18n.t 'documents.update.alert'
+        text = I18n.t 'flash.documents.update.notice'
         expect(page).to have_content text
       end
 
@@ -145,7 +145,7 @@ feature Document do
         expect(page).to have_content I18n.t 'documents.edit.title'
 
         find('a', text: I18n.t('cancel')).click
-        text = I18n.t 'documents.update.alert'
+        text = I18n.t 'flash.documents.update.notice'
         expect(page).not_to have_content text
       end
 
@@ -157,8 +157,9 @@ feature Document do
         name = document.discipline_name
         expect(page).not_to have_content name
 
-        %w(destroy.alert index.no-documents).each do |id|
-          text = I18n.t "documents.#{id}"
+        %w(flash.documents.destroy.notice
+           documents.index.no-documents).each do |text|
+          text = I18n.t text
           expect(page).to have_content text
         end
       end

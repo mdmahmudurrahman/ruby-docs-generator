@@ -1,5 +1,53 @@
 ru:
   flash:
+    documents:
+      create:
+        notice: 'Документ успешно добавлен!'
+      update:
+        notice: 'Документ успешно обновлен!'
+      destroy:
+        notice: 'Документ успешно удален!'
+
+    scientists:
+      create:
+        notice: 'Преподаватель успешно добавлен!'
+      update:
+        notice: 'Преподаватель успешно изменен!'
+      destroy:
+        notice: 'Преподаватель успешно удален!'
+
+    labs:
+      create:
+        notice: 'Лабораторная успешно добавлена!'
+      update:
+        notice: 'Лабораторная успешно изменена!'
+      destroy:
+        notice: 'Лабораторная успешно удалена!'
+
+    practices:
+      create:
+        notice: 'Практика успешно добавлена!'
+      update:
+        notice: 'Практика успешно изменена!'
+      destroy:
+        notice: 'Практика успешно удалена!'
+
+    main_modules:
+      create:
+        notice: 'Модуль успешно добавлен!'
+      update:
+        notice: 'Модуль успешно изменен!'
+      destroy:
+        notice: 'Модуль успешно удален!'
+
+    sub_modules:
+      create:
+        notice: 'Содержательный модуль успешно добавлен!'
+      update:
+        notice: 'Содержательный модуль успешно изменен!'
+      destroy:
+        notice: 'Содержательный модуль успешно удален!'
+
     topics:
       create:
         notice: 'Тема успешно добавлена!'
