@@ -45,8 +45,6 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-
 group :development, :test do
   gem 'rubocop', '~> 0.44.1'
   gem 'selenium-webdriver', '~> 3.0'
