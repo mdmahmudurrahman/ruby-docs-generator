@@ -68,3 +68,11 @@ json.scientists document.scientists do |scientist|
   json.name scientist.name
   json.position scientist.position
 end
+
+labs_counter = 0
+
+json.labs document.labs do |lab|
+  json.name lab.name
+  json.index labs_counter += 1
+  json.time_count lab.time_count
+end
